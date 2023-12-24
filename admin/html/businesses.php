@@ -14,7 +14,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Food</title>
+    <title>Photography Businesses</title>
 
     <meta name="description" content="" />
 
@@ -125,7 +125,7 @@
           </ul>
         </aside>
         <!-- / Menu -->
-        
+
         <!-- Layout container -->
         <div class="layout-page">
           <!-- Navbar -->
@@ -226,7 +226,7 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><span>Food Items</span></h4>
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><span>Photography Businesses</span></h4>
 
               <!-- Bordered Table -->
               <div class="card">
@@ -239,16 +239,19 @@
                           <th>ID</th>
                           <th>Image</th>
                           <th>Name</th>
-                          <th>Quantity</th>
-                          <th>Price</th>
+                          <th>Email</th>
+                          <th>Phone</th>
+                          <th>City</th>
+                          <th>Building name</th>
                           <th>Category</th>
+                          <th>Pricing</th>
                           <th colspan="2">Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php          
                             include_once "PHP/config.php";
-                            $sql="SELECT * from food";
+                            $sql="SELECT * from business";
                             $result=$conn-> query($sql);
                             $count=1;
                             if ($result-> num_rows > 0){
@@ -256,12 +259,15 @@
            
                         ?>
                         <tr>
-                          <td><?=$row["Food_ID"]?></td>
-                          <td><img src="Photos/<?php echo $row['Image'];?>" alt="" height = "100px" width = "100px"></td>
-                          <td><?=$row["Name"]?></td>
-                          <td><?=$row["Quantity"]?></td>
-                          <td><?=$row["Price"]?></td>
-                          <td><?=$row["Category_name"]?></td>
+                          <td><?=$row["p_id"]?></td>
+                          <td><img src="Photos/<?php echo $row['image'];?>" alt="" height = "100px" width = "100px"></td>
+                          <td><?=$row["name"]?></td>
+                          <td><?=$row["email"]?></td>
+                          <td><?=$row["phone"]?></td>
+                          <td><?=$row["city"]?></td>
+                          <td><?=$row["building_name"]?></td>
+                          <td><?=$row["category"]?></td>
+                          <td><?=$row["pricing"]?></td>
                           <td>
                           <!-- <button type="button" class="btn btn-success" style="height:40px" data-bs-toggle="modal" data-bs-target="#editModal">
                             Edit
@@ -298,7 +304,7 @@
               <br>
               <!-- Trigger the modal with a button -->
                 <button type="button" class="btn btn-primary" style="height:40px" data-bs-toggle="modal" data-bs-target="#myModal">
-                    Add Food Item
+                    Add Business
                 </button>
 
                 <!-- Modal -->
@@ -308,26 +314,39 @@
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
-                        <h4 class="modal-title">New Food Item</h4>
+                        <h4 class="modal-title">New Business</h4>
                         <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
                         <form  enctype='multipart/form-data' method="POST">
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                             <label for="id">ID:</label>
                             <input type="number" class="form-control" name="p_id" id="p_id" required>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                             <label for="name">Name:</label>
                             <input type="text" class="form-control" name="p_name" id="p_name" required>
                             </div>
                             <div class="form-group">
-                            <label for="price">Quantity:</label>
-                            <input type="number" class="form-control" name="quantity" id="quantity" required>
+                            <label for="email">Email Address:</label>
+                            <input type="text" class="form-control" name="email" id="email" required>
                             </div>
                             <div class="form-group">
-                            <label for="price">Price:</label>
-                            <input type="number" class="form-control" name="p_price" id="p_price" required>
+                            <label for="phone">Phone Number:</label>
+                            <input type="number" class="form-control" name="phone" id="phone" required>
+                            </div>
+                            <div class="form-group">
+                            <label for="city">City:</label>
+                            <input type="text" class="form-control" name="city" id="city" required>
+                            </div>
+                            <div class="form-group">
+                            <label for="building">Building Name:</label>
+                            <input type="text" class="form-control" name="building" id="building" required>
+                            </div>
+                            
+                            <div class="form-group">
+                            <label for="price">Pricing:</label>
+                            <input type="number" class="form-control" name="price" id="price" required>
                             </div>
                             <!-- <div class="form-group">
                             <label for="qty">Description:</label>
