@@ -388,23 +388,27 @@
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
-                        <h4 class="modal-title">New Student</h4>
+                        <h4 class="modal-title">New Client</h4>
                         <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
                         <form  enctype='multipart/form-data' method="POST">
                             <div class="form-group">
-                            <label for="id">Student ID:</label>
-                            <input type="text" class="form-control" name="s_id" id="s_id" required>
-                            </div>
-                            <div class="form-group">
                             <label for="fname">First Name:</label>
-                            <input type="text" class="form-control" name="f_name" id="f_name" required>
+                            <input type="text" class="form-control" name="fname" id="fname" required>
                             </div>
                             <div class="form-group">
                             <label for="lname">Last Name:</label>
-                            <input type="text" class="form-control" name="l_name" id="l_name" required>
+                            <input type="text" class="form-control" name="lname" id="lname" required>
                             </div>
+                            <div class="form-group">
+                            <label for="email">Email Address:</label>
+                            <input type="text" class="form-control" name="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                            <label for="phone">Phone Number:</label>
+                            <input type="number" class="form-control" name="phone" id="phone" required>
+                            </div>  
                             <div class="form-group">
                             <label for="password">Password:</label>
                             <input type="password" class="form-control" name="password" id="password" required>
@@ -413,21 +417,9 @@
                             <label for="cpassword">Confirm Password:</label>
                             <input type="password" class="form-control" name="cpassword" id="cpassword" required>
                             </div>
-                            <div class="form-group">
-                            <label for="email">Email Address:</label>
-                            <input type="text" class="form-control" name="email" id="email" required>
-                            </div>
-                            <div class="form-group">
-                            <label for="meal_plan">Meal Plan:</label>
-                            <input type="text" class="form-control" name="meal_plan" id="meal_plan" required>
-                            </div>
-                            <div class="form-group">
-                            <label for="phonenumber">Phone Number:</label>
-                            <input type="number" class="form-control" name="phonenumber" id="phonenumber" required>
-                            </div>    
                             <br>
                             <div class="form-group">
-                            <input type="submit" class="btn btn btn-primary" name="add" id="add" value="Add Student">
+                            <input type="submit" class="btn btn btn-primary" name="add" id="add" value="Add Client">
                             <!-- <button type="submit" class="btn btn btn-primary" name="upload" id="upload" style="height:40px">Add Item</button> -->
                             </div>
                         </form>
@@ -447,22 +439,17 @@
                     
                     if(isset($_POST['add']))
                     {
-                        $id = mysqli_real_escape_string($conn,$_POST['s_id']);
-                        $fname = mysqli_real_escape_string($conn,$_POST['f_name']);
-                        $lname = mysqli_real_escape_string($conn,$_POST['l_name']);
+                        $fname = mysqli_real_escape_string($conn,$_POST['fname']);
+                        $lname = mysqli_real_escape_string($conn,$_POST['lname']);
+                        $email = mysqli_real_escape_string($conn,$_POST['email']);
+                        $phone = mysqli_real_escape_string($conn,$_POST['phone']);               
                         $password = mysqli_real_escape_string($conn,$_POST['password']);
                         $cpassword = mysqli_real_escape_string($conn,$_POST['cpassword']);
-                        $email = mysqli_real_escape_string($conn,$_POST['email']);
-                        $mealplan = mysqli_real_escape_string($conn,$_POST['meal_plan']);
-                        $phonenumber = mysqli_real_escape_string($conn,$_POST['phonenumber']);               
-                         
+                                                 
                         $passwordmd5 = md5($password);
                         $cpasswordmd5 = md5($cpassword);            
                         
-                        $insert = mysqli_query($conn,"INSERT INTO student
-                        (Student_ID,First_Name,Last_Name,Password,Confirm_Password,Email_Address,Meal_plan,Phone_Number) 
-                        VALUES ('$id','$fname','$lname','$passwordmd5','$cpasswordmd5','$email','$mealplan','$phonenumber')");
-                
+                        $insert = mysqli_query($conn,"INSERT INTO client(fname,lname,email,phone,password,cpassword) VALUES('$fname','$lname','$email','$phone','$passwordmd5','$cpasswordmd5')");                
                         if(!$insert)
                         {
                           //echo '<script>alert("Connection error") </script>';
