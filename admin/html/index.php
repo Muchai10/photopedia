@@ -27,7 +27,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Dashboard</title>
+    <title>Admin Dashboard</title>
 
     <meta name="description" content="" />
 
@@ -66,9 +66,13 @@
   </head>
 
   <body>
-        <?php          
+        <?php     
+            ini_set("display_errors", "1");
+            ini_set("display_startup_errors","1");
+            error_reporting(E_ALL);
+     
             include_once "PHP/config.php";
-        ?>
+        ?> 
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
@@ -78,7 +82,7 @@
           <div class="app-brand demo">
             <a href="index.php" class="app-brand-link">
               <!-- <img src="../assets/img/favicon/logo1.png" alt=""> -->
-              <span class="app-brand-text demo menu-text">Café La Sala</span>
+              <span class="app-brand-text demo menu-text">PhotoPedia</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -108,17 +112,17 @@
             </li>
             <!-- Tables -->
             <li class="menu-item">
-              <a href="students.php" class="menu-link">
+              <a href="clients.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
-                <div data-i18n="Tables">Students</div>
+                <div data-i18n="Tables">Clients</div>
               </a>
             </li>
 
             <!-- Cards -->
             <li class="menu-item">
-              <a href="food.php" class="menu-link">
+              <a href="businesses.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Food Items</div>
+                <div data-i18n="Basic">Photographers</div>
               </a>
             </li>
 
@@ -127,9 +131,9 @@
             </li>
 
             <li class="menu-item">
-              <a href="sales.php" class="menu-link">
+              <a href="bookings.php" class="menu-link">
               <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-                <div data-i18n="User interface">Sales</div>
+                <div data-i18n="User interface">Bookings</div>
               </a>
             </li>
 
@@ -248,15 +252,14 @@
                 
               <!-- Dashboard -->
               <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><span>Dashboard</span></h4>
-
               <div class="row mb-5">
                 <div class="col-md-6 col-lg-4">
                   <div class="card mb-3">
                     <div class="card-body">
-                      <h5 class="card-title">Total No. Of Students</h5>
-                      <h5>
+                      <h5 class="card-title">Total No. Of Clients</h5>
+                      <h5> 
                         <?php
-                            $sql="SELECT * from student";
+                            $sql="SELECT * from client";
                             $result=$conn-> query($sql);
                             $count=0;
                             if ($result-> num_rows > 0){
@@ -266,17 +269,18 @@
                                 }
                             }
                             echo $count;
-                        ?></h5>
+                        ?>
+                        </h5> 
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
                   <div class="card mb-3">
                     <div class="card-body">
-                      <h5 class="card-title">Total No. of Food Items</h5>
-                      <h5>
+                      <h5 class="card-title">Total No. of Photographers</h5>
+                      <h5> 
                         <?php
-                            $sql="SELECT * from food";
+                            $sql="SELECT * from business";
                             $result=$conn-> query($sql);
                             $count=0;
                             if ($result-> num_rows !=0 ){
@@ -286,17 +290,18 @@
                                 }
                             }
                             echo $count;
-                        ?></h5>
+                        ?>
+                        </h5>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
                   <div class="card mb-3">
                     <div class="card-body">
-                      <h5 class="card-title">Total No. Of Orders</h5>
-                      <h5>
+                      <h5 class="card-title">Total No. Of Booked Sessions</h5>
+                      <h5> 
                         <?php
-                            $sql="SELECT * from orders";
+                            $sql="SELECT * from session";
                             $result=$conn-> query($sql);
                             $count=0;
                             if ($result-> num_rows !=0 ){
@@ -306,7 +311,8 @@
                                 }
                             }
                             echo $count;
-                        ?></h5>
+                        ?>
+                      </h5> 
                     </div>
                   </div>
                 </div>

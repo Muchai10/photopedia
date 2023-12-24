@@ -27,7 +27,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Students</title>
+    <title>Clients</title>
 
     <meta name="description" content="" />
 
@@ -71,9 +71,9 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
-              
-              <span class="app-brand-text demo menu-text">Café La Sala</span>
+            <a href="index.php" class="app-brand-link">
+              <!-- <img src="../assets/img/favicon/logo1.png" alt=""> -->
+              <span class="app-brand-text demo menu-text">PhotoPedia</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -83,6 +83,7 @@
 
           <div class="menu-inner-shadow"></div>
 
+          
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item">
@@ -90,6 +91,8 @@
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
+            </li>
+
             </li>
                         
             <!-- Components -->
@@ -100,17 +103,17 @@
             </li>
             <!-- Tables -->
             <li class="menu-item">
-              <a href="students.php" class="menu-link">
+              <a href="clients.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
-                <div data-i18n="Tables">Students</div>
+                <div data-i18n="Tables">Clients</div>
               </a>
             </li>
 
             <!-- Cards -->
             <li class="menu-item">
-              <a href="food.php" class="menu-link">
+              <a href="businesses.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Food Items</div>
+                <div data-i18n="Basic">Photographers</div>
               </a>
             </li>
 
@@ -119,9 +122,9 @@
             </li>
 
             <li class="menu-item">
-              <a href="sales.php" class="menu-link">
+              <a href="bookings.php" class="menu-link">
               <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-                <div data-i18n="User interface">Sales</div>
+                <div data-i18n="User interface">Bookings</div>
               </a>
             </li>
 
@@ -236,24 +239,23 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><span>Students</span></h4>
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><span>Clients</span></h4>
 
               <!-- Bordered Table -->
               <div class="card">
-                <!-- <h5 class="card-header">Students</h5> -->
+                <!-- <h5 class="card-header">Clients</h5> -->
                 <div class="card-body">
                   <div class="table-responsive text-nowrap">
                     <table class="table table-bordered">
                       <thead>
                         <tr>
-                          <th>Student ID</th>
+                          <th>Client ID</th>
                           <th>First Name</th>
                           <th>Last Name</th>
+                          <th>Email Address</th>
+                          <th>Phone Number</th>
                           <th>Password</th>
                           <th>Confirm Password</th>
-                          <th>Email Address</th>
-                          <th>Meal Plan</th>
-                          <th>Phone Number</th>
                           <th colspan="2">Action</th>
                         </tr>
                       </thead>
@@ -316,9 +318,13 @@
                           </td>
                         </tr>
                         <tr> -->
-                        <?php          
+                        <?php 
+                            ini_set("display_errors", "1");
+                            ini_set("display_startup_errors","1");
+                            error_reporting(E_ALL);
+                            
                             include_once "PHP/config.php";
-                            $sql="SELECT * from student";
+                            $sql="SELECT * from client";
                             $result=$conn-> query($sql);
                             $count=1;
                             if ($result-> num_rows > 0){
@@ -326,19 +332,18 @@
            
                         ?>
                         <tr>
-                          <td><?=$row["Student_ID"]?>
-                          <td><?=$row["First_Name"]?>
-                          <td><?=$row["Last_Name"]?></td>
-                          <td><?=$row["Password"]?></td>
-                          <td><?=$row["Confirm_Password"]?></td>
-                          <td><?=$row["Email_Address"]?></td>
-                          <td><?=$row["Meal_plan"]?></td>
-                          <td><?=$row["Phone_Number"]?></td>
+                          <td><?=$row["client_id"]?>
+                          <td><?=$row["fname"]?>
+                          <td><?=$row["lname"]?></td>
+                          <td><?=$row["email"]?></td>
+                          <td><?=$row["phone"]?></td>
+                          <td><?=$row["password"]?></td>
+                          <td><?=$row["cpassword"]?></td>
                           <td>
                           <!-- <button type="button" class="btn btn-success" style="height:40px" data-bs-toggle="modal" data-bs-target="#editModal">
                             Edit
                           </button> -->
-                          <button type="button" class="btn btn-success" style="height:40px"><a href="edit.php?editid=<?php echo $row['Student_ID']?>" class="text-white">
+                          <button type="button" class="btn btn-success" style="height:40px"><a href="edit.php?editid=<?php echo $row['client_id']?>" class="text-white">
                             Edit
                             </a>
                           </button>
@@ -347,7 +352,7 @@
                           <!-- <button type="button" class="btn btn-danger" style="height:40px" data-bs-toggle="modal" data-bs-target="#myModal">
                             Delete
                           </button> -->
-                          <button type="button" class="btn btn-danger" style="height:40px"><a href="PHP/delete.php?deleteid=<?php echo $row['Student_ID']?>" class="text-white">
+                          <button type="button" class="btn btn-danger" style="height:40px"><a href="PHP/delete.php?deleteid=<?php echo $row['client_id']?>" class="text-white">
                             Delete
                             </a>
                           </button>
@@ -370,7 +375,7 @@
 
 <!-- ################################## Add Student Modal #################################################### -->
               <button type="button" class="btn btn-primary" style="height:40px" data-bs-toggle="modal" data-bs-target="#myModal">
-                Add Student
+                Add Client
               </button>
               <!-- <button type="button" class="btn btn-primary" style="height:40px" onclick="window.print()">
                 Print Report

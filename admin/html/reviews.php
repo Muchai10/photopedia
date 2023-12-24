@@ -59,8 +59,8 @@
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
             <a href="index.php" class="app-brand-link">
-              
-              <span class="app-brand-text demo menu-text">Café La Sala</span>
+              <!-- <img src="../assets/img/favicon/logo1.png" alt=""> -->
+              <span class="app-brand-text demo menu-text">PhotoPedia</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -70,6 +70,7 @@
 
           <div class="menu-inner-shadow"></div>
 
+          
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item">
@@ -78,25 +79,28 @@
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
+
+            </li>
                         
             <!-- Components -->
             <!-- <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li> -->
+            
             <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Manage</span>
             </li>
             <!-- Tables -->
             <li class="menu-item">
-              <a href="students.php" class="menu-link">
+              <a href="clients.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
-                <div data-i18n="Tables">Students</div>
+                <div data-i18n="Tables">Clients</div>
               </a>
             </li>
 
             <!-- Cards -->
             <li class="menu-item">
-              <a href="food.php" class="menu-link">
+              <a href="businesses.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Food Items</div>
+                <div data-i18n="Basic">Photographers</div>
               </a>
             </li>
 
@@ -105,9 +109,9 @@
             </li>
 
             <li class="menu-item">
-              <a href="sales.php" class="menu-link">
+              <a href="bookings.php" class="menu-link">
               <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-                <div data-i18n="User interface">Sales</div>
+                <div data-i18n="User interface">Bookings</div>
               </a>
             </li>
 

@@ -14,7 +14,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Reports</title>
+    <title>Food</title>
 
     <meta name="description" content="" />
 
@@ -59,8 +59,8 @@
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
             <a href="index.php" class="app-brand-link">
-              
-              <span class="app-brand-text demo menu-text">Café La Sala</span>
+              <!-- <img src="../assets/img/favicon/logo1.png" alt=""> -->
+              <span class="app-brand-text demo menu-text">PhotoPedia</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -70,6 +70,7 @@
 
           <div class="menu-inner-shadow"></div>
 
+          
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item">
@@ -78,25 +79,28 @@
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
+
+            </li>
                         
             <!-- Components -->
             <!-- <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li> -->
+            
             <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Manage</span>
             </li>
             <!-- Tables -->
             <li class="menu-item">
-              <a href="students.php" class="menu-link">
+              <a href="clients.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
-                <div data-i18n="Tables">Students</div>
+                <div data-i18n="Tables">Clients</div>
               </a>
             </li>
 
             <!-- Cards -->
             <li class="menu-item">
-              <a href="food.php" class="menu-link">
+              <a href="businesses.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Food Items</div>
+                <div data-i18n="Basic">Photographers</div>
               </a>
             </li>
 
@@ -105,9 +109,9 @@
             </li>
 
             <li class="menu-item">
-              <a href="sales.php" class="menu-link">
+              <a href="bookings.php" class="menu-link">
               <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-                <div data-i18n="User interface">Sales</div>
+                <div data-i18n="User interface">Bookings</div>
               </a>
             </li>
 
@@ -121,7 +125,7 @@
           </ul>
         </aside>
         <!-- / Menu -->
-
+        
         <!-- Layout container -->
         <div class="layout-page">
           <!-- Navbar -->
@@ -222,7 +226,7 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><span>Reviews</span></h4>
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><span>Food Items</span></h4>
 
               <!-- Bordered Table -->
               <div class="card">
@@ -232,19 +236,19 @@
                     <table class="table table-bordered">
                       <thead>
                         <tr>
-                          <th>Payment ID</th>
-                          <th>Mode</th>
-                          <th>Reference Code</th>
-                          <th>Amount Paid</th>
-                          <th>Order ID</th>
-                          <th>Order Status</th>
-                          <th>Payment Date</th>
+                          <th>ID</th>
+                          <th>Image</th>
+                          <th>Name</th>
+                          <th>Quantity</th>
+                          <th>Price</th>
+                          <th>Category</th>
+                          <th colspan="2">Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php          
                             include_once "PHP/config.php";
-                            $sql="SELECT * from payment";
+                            $sql="SELECT * from food";
                             $result=$conn-> query($sql);
                             $count=1;
                             if ($result-> num_rows > 0){
@@ -252,14 +256,30 @@
            
                         ?>
                         <tr>
-                          <td><?=$row["Payment_ID"]?></td>
-                          <td><?=$row["Mode"]?></td>
-                          <td><?=$row["Reference_Code"]?></td>
-                          <td><?=$row["Amount_Paid"]?></td>
-                          <td><?=$row["Order_ID"]?></td>
-                          <td><?=$row["Order_Status"]?></td>
-                          <td><?=$row["Payment_Date"]?></td>
-    
+                          <td><?=$row["Food_ID"]?></td>
+                          <td><img src="Photos/<?php echo $row['Image'];?>" alt="" height = "100px" width = "100px"></td>
+                          <td><?=$row["Name"]?></td>
+                          <td><?=$row["Quantity"]?></td>
+                          <td><?=$row["Price"]?></td>
+                          <td><?=$row["Category_name"]?></td>
+                          <td>
+                          <!-- <button type="button" class="btn btn-success" style="height:40px" data-bs-toggle="modal" data-bs-target="#editModal">
+                            Edit
+                          </button> -->
+                          <button type="button" class="btn btn-success" style="height:40px"><a href="edit.php?editid=<?php echo $row['Food_ID']?>" class="text-white">
+                            Edit
+                            </a>
+                          </button>
+                          </td>
+                          <td> 
+                          <!-- <button type="button" class="btn btn-danger" style="height:40px" data-bs-toggle="modal" data-bs-target="#myModal">
+                            Delete
+                          </button> -->
+                          <button type="button" class="btn btn-danger" style="height:40px"><a href="PHP/delete.php?id=<?php echo $row['Food_ID']?>" class="text-white">
+                            Delete
+                            </a>
+                          </button>
+                          </td>
                         <?php
                               $count=$count+1;
                               
@@ -276,11 +296,171 @@
               </div>
 
               <br>
+              <!-- Trigger the modal with a button -->
+                <button type="button" class="btn btn-primary" style="height:40px" data-bs-toggle="modal" data-bs-target="#myModal">
+                    Add Food Item
+                </button>
 
-                <button type="button" class="btn btn-primary" style="height:40px" onclick="window.print()">
-                Print Report
-              </button>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                    
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h4 class="modal-title">New Food Item</h4>
+                        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                        <form  enctype='multipart/form-data' method="POST">
+                            <div class="form-group">
+                            <label for="id">ID:</label>
+                            <input type="number" class="form-control" name="p_id" id="p_id" required>
+                            </div>
+                            <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" class="form-control" name="p_name" id="p_name" required>
+                            </div>
+                            <div class="form-group">
+                            <label for="price">Quantity:</label>
+                            <input type="number" class="form-control" name="quantity" id="quantity" required>
+                            </div>
+                            <div class="form-group">
+                            <label for="price">Price:</label>
+                            <input type="number" class="form-control" name="p_price" id="p_price" required>
+                            </div>
+                            <!-- <div class="form-group">
+                            <label for="qty">Description:</label>
+                            <input type="text" class="form-control" id="p_desc" required>
+                            </div> -->
+                            <div class="form-group">
+                            <label for="category">Category:</label>
+                            <input type="text" class="form-control" name="category" id="category" required> 
+                            <!-- <select id="category" name="Category_name" >
+                                <option disabled selected>Select category</option>
+                                    <option value="breakfast">Breakfast</option>
+                                    <option value="drinks">Drinks</option>
+                                    <option value="lunchandsupper">Lunch and Supper</option>
+                                    <option value="fruits">Fruits</option>
+                                    <option value="fruits">Special Offers</option>
+                                    <option value="fruits">Tins and Cups</option>
+                            </select>    -->
 
+                                <?php
+
+                                // $sql="SELECT * from food_category";
+                                // $result = $conn-> query($sql);
+
+                                // if ($result-> num_rows > 0){
+                                //     while($row = $result-> fetch_assoc()){
+                                //     echo"<option value='".$row['Category_name']."'>".$row['Category_name'] ."</option>";
+                                //     }
+                                // }
+                                ?>
+
+                           
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="file">Choose Image:</label>
+                                <input type="file" class="form-control-file" name="image" id="image">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                            <input type="submit" class="btn btn btn-primary" name="add" id="add" value="Add Item">
+                            <!-- <button type="submit" class="btn btn btn-primary" name="upload" id="upload" style="height:40px">Add Item</button> -->
+                            </div>
+                        </form>
+
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-bs-dismiss="modal" style="height:40px">Close</button>
+                        </div>
+                    </div>
+                    
+                    </div>
+                </div>
+
+                <?php
+                    include_once "PHP/config.php";
+                    
+                    
+                    if(isset($_POST['add']))
+                    {
+                        $id = mysqli_real_escape_string($conn,$_POST['p_id']);
+                        $name = mysqli_real_escape_string($conn,$_POST['p_name']);
+                        $qty = mysqli_real_escape_string($conn,$_POST['quantity']);
+                        $price = mysqli_real_escape_string($conn,$_POST['p_price']);
+                        $category = mysqli_real_escape_string($conn,$_POST['category']);
+                        
+                        
+                        // $image = mysqli_real_escape_string($conn,$_FILES['file']['name']);
+                        // $temp = mysqli_real_escape_string($conn,$_FILES['file']['tmp_name']);
+                           
+                            $image_name = $_FILES["image"] ["name"];
+                            $image_type = $_FILES["image"] ["type"];
+                            $image_size = $_FILES["image"] ["size"];
+                            $image_temp = $_FILES["image"] ["tmp_name"];
+                            $image_error = $_FILES["image"] ["error"];
+                                
+                            if ($image_error > 0){
+                              die("Error uploading file! Code $image_error.");}
+                            else
+                            {
+                              if($image_size > 30000000000) //conditions for the file
+                              {
+                                die("Format is not allowed or file size is too big!");
+                              }
+                              else
+                              {
+                                move_uploaded_file($image_temp,"../Photos/".$image_name);
+                              }
+
+                        // $location = "./Photos/";
+                        // $lname = $location.$image;
+
+                        //$target_dir="../Photos/";
+                        // $finalImage=$target_dir.$image;
+
+                        // move_uploaded_file($temp,$finalImage);
+                        
+                        
+                      //   $errors= array();
+                      //   if(   
+                      //   empty($errors)==true){
+                      //     move_uploaded_file($temp,"../Photos/" .$image);
+                      //     echo "Success";
+                      //   }else{
+                      //     print_r($errors);
+                      //  }
+                        
+                        // $conn = mysqli_connect('localhost', 'administrator', 'test1234', 'cafeteria');
+
+                        // if(!$conn){
+                        //     echo 'Connection error: ' . mysqli_connect_error();
+                        // }
+
+                        
+
+                        $insert = mysqli_query($conn,"INSERT INTO food
+                        (Food_ID,Image,Name,Quantity,Price,Category_name) 
+                        VALUES ('$id','$image_name','$name','$qty','$price','$category')");
+                
+                        if(!$insert)
+                        {
+                          //echo '<script>alert("Connection error") </script>';
+                            echo mysqli_error($conn);
+                        }
+                        else
+                        {   
+                          echo '<script> alert("Successful") </script>';
+                          //echo "Records added successfully.";
+                        }
+                    
+                    }
+                  }
+                        
+                ?>
 
               <!--/ Bordered Table -->
 
