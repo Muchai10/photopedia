@@ -133,7 +133,7 @@
     <!-- Search Area End -->
 
     <!-- Feature Area Starts -->
-    <section class="feature-area section-padding2">
+    <!-- <section class="feature-area section-padding2">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
@@ -159,7 +159,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Feature Area End -->
 
     <!-- Category Area Starts -->
@@ -168,34 +168,36 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-top text-center">
-                        <h2>Find a photographer by category</h2>
-                        <p>Open lesser winged midst wherein may morning</p>
+                        <h2>Explore photographers by category</h2>
+                        <p>Search based on the categories</p>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-8">
                     <div class="single-category text-center mb-4">
-                        <img src="assets/images/cat1.png" alt="category">
-                        <h4>accounting & Finance</h4>
-                        <h5>250 open job</h5>
+                        <img src="assets/images/nature1.png" alt="category">
+                        <h4>Nature based</h4>
+                        <a href="#" class="secondary-btn"><h5>explore now<span class="flaticon-next"></span></h5></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-8">
                     <div class="single-category text-center mb-4">
-                        <img src="assets/images/cat2.png" alt="category">
-                        <h4>production & operation</h4>
-                        <h5>250 open job</h5>
+                        <img src="assets/images/people1.png" alt="category">
+                        <h4>People based</h4>
+                        <a href="#" class="secondary-btn"><h5>explore now<span class="flaticon-next"></span></h5></a>
+                        <!-- <h5>250 open job</h5> -->
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-8">
                     <div class="single-category text-center mb-4">
-                        <img src="assets/images/cat3.png" alt="category">
-                        <h4>telecommunication</h4>
-                        <h5>250 open job</h5>
+                        <img src="assets/images/landscape2.png" alt="category">
+                        <h4>Man-made based</h4>
+                        <a href="#" class="secondary-btn"><h5>explore now<span class="flaticon-next"></span></h5></a>
+                        <!-- <h5>250 open job</h5> -->
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <!-- <div class="col-lg-3 col-md-6">
                     <div class="single-category text-center mb-4">
                         <img src="assets/images/cat4.png" alt="category">
                         <h4>garments & textile</h4>
@@ -229,7 +231,7 @@
                         <h4>customer support</h4>
                         <h5>250 open job</h5>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>

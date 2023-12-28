@@ -249,7 +249,12 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php          
+                        <?php   
+                            // ini_set("display_errors", "1");
+                            // ini_set("display_startup_errors","1");
+                            // error_reporting(E_ALL);
+
+                            
                             include_once "PHP/config.php";
                             $sql="SELECT * from business";
                             $result=$conn-> query($sql);
@@ -272,7 +277,7 @@
                           <!-- <button type="button" class="btn btn-success" style="height:40px" data-bs-toggle="modal" data-bs-target="#editModal">
                             Edit
                           </button> -->
-                          <button type="button" class="btn btn-success" style="height:40px"><a href="edit.php?editid=<?php echo $row['Food_ID']?>" class="text-white">
+                          <button type="button" class="btn btn-success" style="height:40px"><a href="edit.php?editid=<?php echo $row['p_id']?>" class="text-white">
                             Edit
                             </a>
                           </button>
@@ -281,7 +286,7 @@
                           <!-- <button type="button" class="btn btn-danger" style="height:40px" data-bs-toggle="modal" data-bs-target="#myModal">
                             Delete
                           </button> -->
-                          <button type="button" class="btn btn-danger" style="height:40px"><a href="PHP/delete.php?id=<?php echo $row['Food_ID']?>" class="text-white">
+                          <button type="button" class="btn btn-danger" style="height:40px"><a href="PHP/delete.php?id=<?php echo $row['p_id']?>" class="text-white">
                             Delete
                             </a>
                           </button>
@@ -328,8 +333,12 @@
                             <input type="text" class="form-control" name="p_name" id="p_name" required>
                             </div>
                             <div class="form-group">
+                            <label for="name">Description:</label>
+                            <input type="text" class="form-control" name="description" id="description" required>
+                            </div>
+                            <div class="form-group">
                             <label for="email">Email Address:</label>
-                            <input type="text" class="form-control" name="email" id="email" required>
+                            <input type="text" class="form-control" name="email" id="email">
                             </div>
                             <div class="form-group">
                             <label for="phone">Phone Number:</label>
@@ -343,36 +352,32 @@
                             <label for="building">Building Name:</label>
                             <input type="text" class="form-control" name="building" id="building" required>
                             </div>
-                            
                             <div class="form-group">
                             <label for="price">Pricing:</label>
-                            <input type="number" class="form-control" name="price" id="price" required>
-                            </div>
+                            <input type="text" class="form-control" name="price" id="price">
+                            </div> 
                             <!-- <div class="form-group">
                             <label for="qty">Description:</label>
                             <input type="text" class="form-control" id="p_desc" required>
                             </div> -->
-                            <div class="form-group">
+                            <div class="form-group"> 
                             <label for="category">Category:</label>
                             <input type="text" class="form-control" name="category" id="category" required> 
-                            <!-- <select id="category" name="Category_name" >
+                            <!-- <select id="category" name="category" >
                                 <option disabled selected>Select category</option>
-                                    <option value="breakfast">Breakfast</option>
-                                    <option value="drinks">Drinks</option>
-                                    <option value="lunchandsupper">Lunch and Supper</option>
-                                    <option value="fruits">Fruits</option>
-                                    <option value="fruits">Special Offers</option>
-                                    <option value="fruits">Tins and Cups</option>
+                                    <option value="nature">Nature-based</option>
+                                    <option value="people">People-based</option>
+                                    <option value="man-made">Man-made based</option>
                             </select>    -->
 
                                 <?php
 
-                                // $sql="SELECT * from food_category";
+                                // $sql="SELECT * from photography_style";
                                 // $result = $conn-> query($sql);
 
                                 // if ($result-> num_rows > 0){
                                 //     while($row = $result-> fetch_assoc()){
-                                //     echo"<option value='".$row['Category_name']."'>".$row['Category_name'] ."</option>";
+                                //     echo"<option value='".$row['category']."'>".$row['category'] ."</option>";
                                 //     }
                                 // }
                                 ?>
@@ -386,7 +391,7 @@
                             </div>
                             <br>
                             <div class="form-group">
-                            <input type="submit" class="btn btn btn-primary" name="add" id="add" value="Add Item">
+                            <input type="submit" class="btn btn btn-primary" name="add" id="add" value="Add Entity">
                             <!-- <button type="submit" class="btn btn btn-primary" name="upload" id="upload" style="height:40px">Add Item</button> -->
                             </div>
                         </form>
@@ -406,10 +411,13 @@
                     
                     if(isset($_POST['add']))
                     {
-                        $id = mysqli_real_escape_string($conn,$_POST['p_id']);
                         $name = mysqli_real_escape_string($conn,$_POST['p_name']);
-                        $qty = mysqli_real_escape_string($conn,$_POST['quantity']);
-                        $price = mysqli_real_escape_string($conn,$_POST['p_price']);
+                        $desc = mysqli_real_escape_string($conn,$_POST['description']);
+                        $email = mysqli_real_escape_string($conn,$_POST['email']);
+                        $phone = mysqli_real_escape_string($conn,$_POST['phone']);
+                        $city = mysqli_real_escape_string($conn,$_POST['city']);
+                        $building = mysqli_real_escape_string($conn,$_POST['building']);
+                        $price = mysqli_real_escape_string($conn,$_POST['price']);
                         $category = mysqli_real_escape_string($conn,$_POST['category']);
                         
                         
@@ -461,9 +469,9 @@
 
                         
 
-                        $insert = mysqli_query($conn,"INSERT INTO food
-                        (Food_ID,Image,Name,Quantity,Price,Category_name) 
-                        VALUES ('$id','$image_name','$name','$qty','$price','$category')");
+                        $insert = mysqli_query($conn,"INSERT INTO business
+                        (image,name,description,email,phone,city,building_name,category,pricing) 
+                        VALUES ('$image_name','$name','$desc','$email','$phone','$city','$building','$category','$price')");
                 
                         if(!$insert)
                         {
