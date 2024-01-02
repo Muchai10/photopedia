@@ -343,7 +343,7 @@
                           <!-- <button type="button" class="btn btn-success" style="height:40px" data-bs-toggle="modal" data-bs-target="#editModal">
                             Edit
                           </button> -->
-                          <button type="button" class="btn btn-success" style="height:40px"><a href="edit.php?editid=<?php echo $row['client_id']?>" class="text-white">
+                          <button type="button" class="btn btn-success" style="height:40px"><a href="edit1.php?editid=<?php echo $row['client_id']?>" class="text-white">
                             Edit
                             </a>
                           </button>

@@ -27,7 +27,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Students</title>
+    <title>Clients</title>
 
     <meta name="description" content="" />
 
@@ -73,7 +73,7 @@
           <div class="app-brand demo">
             <a href="index.html" class="app-brand-link">
               
-              <span class="app-brand-text demo menu-text">Café La Sala</span>
+              <span class="app-brand-text demo menu-text">Photopedia</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -91,6 +91,8 @@
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
+
+            </li>
                         
             <!-- Components -->
             <!-- <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li> -->
@@ -100,17 +102,17 @@
             </li>
             <!-- Tables -->
             <li class="menu-item">
-              <a href="students.php" class="menu-link">
+              <a href="clients.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
-                <div data-i18n="Tables">Students</div>
+                <div data-i18n="Tables">Clients</div>
               </a>
             </li>
 
             <!-- Cards -->
             <li class="menu-item">
-              <a href="food.php" class="menu-link">
+              <a href="businesses.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Food Items</div>
+                <div data-i18n="Basic">Photographers</div>
               </a>
             </li>
 
@@ -119,9 +121,9 @@
             </li>
 
             <li class="menu-item">
-              <a href="sales.php" class="menu-link">
+              <a href="bookings.php" class="menu-link">
               <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-                <div data-i18n="User interface">Sales</div>
+                <div data-i18n="User interface">Bookings</div>
               </a>
             </li>
 
@@ -236,7 +238,7 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><span>Edit Student</span></h4>
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><span>Edit Client</span></h4>
 
               <div class="col-xl-6">
                 <!-- HTML5 Inputs -->
@@ -245,65 +247,62 @@
                     <div class="card-body">
 
                     <?php
+                      ini_set("display_errors", "1");
+                      ini_set("display_startup_errors","1");
+                      error_reporting(E_ALL); 
+
                       include_once "PHP/config.php";
                       if(isset($_GET['editid'])){
                         $id = mysqli_real_escape_string($conn, $_GET['editid']);
-                        $query = "SELECT * FROM student WHERE Student_ID = '$id'";
+                        $query = "SELECT * FROM client WHERE client_id = '$id'";
                         $query_run = mysqli_query($conn, $query);
 
                         if(mysqli_num_rows($query_run) > 0){
-                          $student = mysqli_fetch_array($query_run);
+                          $client = mysqli_fetch_array($query_run);
                           ?>
                         
-                      <form  enctype='multipart/form-data' method="POST">
-                        <input type="hidden" name="s_id" id="s_id" value="<?=$student; ?>">
+                      <form enctype='multipart/form-data' method="POST">
+                        <input type="hidden" name="client_id" id="client_id" value="<?=$client['client_id']; ?>">
                         <div class="mb-3 row">
                           <label for="fname" class="col-md-2 col-form-label">First Name</label>
                           <div class="col-md-10">
-                          <input type="text" class="form-control" name="First_Name" id="First_Name" value="<?=$student['First_Name']; ?>" required>
+                          <input type="text" class="form-control" name="fname" id="fname" value="<?=$client['fname']; ?>" required>
                           </div>
                         </div>
                         <div class="mb-3 row">
                           <label for="lname" class="col-md-2 col-form-label">Last Name</label>
                           <div class="col-md-10">
-                          <input type="text" class="form-control" name="l_name" id="l_name" value="<?=$student['Last_Name']; ?>" required>
-                          </div>
-                        </div>
-                        <div class="mb-3 row">
-                          <label for="password" class="col-md-2 col-form-label">Password</label>
-                          <div class="col-md-10">
-                          <input type="password" class="form-control" name="password" id="password"  value="<?=$student['Password']; ?>" required>
-                          </div>
-                        </div>
-                        <div class="mb-3 row">
-                          <label for="cpassword" class="col-md-2 col-form-label">Confirm Password</label>
-                          <div class="col-md-10">
-                          <input type="password" class="form-control" name="cpassword" id="cpassword" value="<?=$student['Confirm_Password']; ?>" required>
+                          <input type="text" class="form-control" name="lname" id="lname" value="<?=$client['lname']; ?>" required>
                           </div>
                         </div>
                         <div class="mb-3 row">
                           <label for="email" class="col-md-2 col-form-label">Email</label>
                           <div class="col-md-10">
-                          <input type="text" class="form-control" name="email" id="email" value="<?=$student['Email_Address']; ?>" required>
+                          <input type="text" class="form-control" name="email" id="email" value="<?=$client['email']; ?>" required>
                           </div>
                         </div>
                         <div class="mb-3 row">
-                          <label for="meal_plan" class="col-md-2 col-form-label">Meal Plan</label>
+                          <label for="phone" class="col-md-2 col-form-label">Phone</label>
                           <div class="col-md-10">
-                          <input type="text" class="form-control" name="meal_plan" id="meal_plan" value="<?=$student['Meal_plan']; ?>" required>
+                          <input type="number" class="form-control" name="phone" id="phone" value="<?=$client['phone']; ?>" required>
                           </div>
                         </div>
                         <div class="mb-3 row">
-                          <label for="phonenumber" class="col-md-2 col-form-label">Phone</label>
+                          <label for="password" class="col-md-2 col-form-label">Password</label>
                           <div class="col-md-10">
-                          <input type="number" class="form-control" name="phonenumber" id="phonenumber" value="<?=$student['Phone_Number']; ?>" required>
+                          <input type="password" class="form-control" name="password" id="password"  value="<?=$client['password']; ?>" required>
                           </div>
                         </div>
-                        
+                        <div class="mb-3 row">
+                          <label for="cpassword" class="col-md-2 col-form-label">Confirm Password</label>
+                          <div class="col-md-10">
+                          <input type="password" class="form-control" name="cpassword" id="cpassword" value="<?=$client['cpassword']; ?>" required>
+                          </div>
+                        </div>
                         <br>
                         <div class="mb-3">                      
                               <button type="submit" class="btn btn btn-primary" name="edit" id="edit" style="height:40px">Save Changes</button> &nbsp; &nbsp; &nbsp;
-                              <button type="button" class="btn btn-danger" style="height:40px"><a href="students.php" class="text-white">
+                              <button type="button" class="btn btn-danger" style="height:40px"><a href="clients.php" class="text-white">
                               Go Back
                               </a>
                             </button>
@@ -332,38 +331,54 @@
                   <?php
                     if(isset($_POST['edit']))
                     {
-                        $id = mysqli_real_escape_string($conn,$_POST['s_id']);
-                        $fname = mysqli_real_escape_string($conn,$_POST['First_Name']);
-                        $lname = mysqli_real_escape_string($conn,$_POST['l_name']);
+                        $id = mysqli_real_escape_string($conn,$_POST['client_id']);
+                        $fname = mysqli_real_escape_string($conn,$_POST['fname']);
+                        $lname = mysqli_real_escape_string($conn,$_POST['lname']);
+                        $email = mysqli_real_escape_string($conn,$_POST['email']);
+                        $phonenumber = mysqli_real_escape_string($conn,$_POST['phone']);               
                         $password = mysqli_real_escape_string($conn,$_POST['password']);
                         $cpassword = mysqli_real_escape_string($conn,$_POST['cpassword']);
-                        $email = mysqli_real_escape_string($conn,$_POST['email']);
-                        $mealplan = mysqli_real_escape_string($conn,$_POST['meal_plan']);
-                        $phonenumber = mysqli_real_escape_string($conn,$_POST['phonenumber']);               
-                         
+                                                 
                         $passwordmd5 = md5($password);
                         $cpasswordmd5 = md5($cpassword);            
                          
-                        $insert = mysqli_query($conn,"UPDATE student SET First_Name = '$fname',Last_Name = '$lname',Password = '$passwordmd5',Confirm_Password = '$cpasswordmd5',Email_Address = '$email',Meal_plan = '$mealplan',Phone_Number = '$phonenumber' WHERE Student_ID = '$id'");
-                        $query = mysqli_query($conn,$insert);
+                        if($passwordmd5 != $cpasswordmd5){
+                          echo '<script> alert("Passwords Do Not Match") </script>';
+                        }
+                        else{
+                          $update = mysqli_query($conn,"UPDATE client SET fname = '$fname',lname = '$lname',email = '$email', phone = '$phonenumber', password = '$passwordmd5', cpassword = '$cpasswordmd5' WHERE client_id = '$id'");
 
-                        if(!$query)
-                        {
-                          //echo '<script>alert("Connection error") </script>';
-                            echo mysqli_error($conn);
-                        }
-                        else
-                        {  
-                          if($passwordmd5 != $cpasswordmd5){
-                              echo '<script> alert("Passwords Do Not Match") </script>';
+                          if(!$update)
+                          {
+                              echo mysqli_error($conn);
                           }
-                          else{                    
+                          else
+                          {  
                               echo '<script> alert("Successful") </script>';
-                              //header('location:students.php');
-                          }  
-                        }
+                              //header("Location: clients.php");
+                          }
+                          }
+                        }  
+                        // $insert = mysqli_query($conn,"UPDATE client SET fname = '$fname',lname = '$lname',email = '$email', phone = '$phonenumber', password = '$passwordmd5', cpassword = '$cpasswordmd5' WHERE client_id = '$id'");
+                        // $query = mysqli_query($conn,$insert);
+
+                        // if(!$query)
+                        // {
+                        //   //echo '<script>alert("Connection error") </script>';
+                        //     echo mysqli_error($conn);
+                        // }
+                        // else
+                        // {  
+                        //   if($passwordmd5 != $cpasswordmd5){
+                        //       echo '<script> alert("Passwords Do Not Match") </script>';
+                        //   }
+                        //   else{                    
+                        //       echo '<script> alert("Successful") </script>';
+                        //       //header('location:students.php');
+                        //   }  
+                        // }
                     
-                    }     
+                        
                   ?>
                   
 
