@@ -104,12 +104,19 @@
     <!-- Banner Area End -->
 
     <!-- Search Area Starts -->
+    <?php 
+        ini_set("display_errors", "1");
+        ini_set("display_startup_errors","1");
+        error_reporting(E_ALL);
+
+        include("PHP/config.php");
+    ?>
     <div class="search-area">
         <div class="search-bg">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form action="#" class="d-md-flex justify-content-between">
+                        <form action="" method="GET" class="d-md-flex justify-content-between">
                             <select>
                                 <option value="1">All Category</option>
                                 <option value="2">Nature Photography</option>
@@ -122,7 +129,7 @@
                                 <option value="3">Mombasa</option>
                                 <option value="4">Kajiado</option>
                             </select>
-                            <input type="text" placeholder="Search Keyword" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'" required>
+                            <input type="text" placeholder="Search Keyword" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'" id="search" name="search" value="<?php if(isset($_GET['search'])){echo $_GET['search']; }?>" required>
                             <button type="submit" class="template-btn">search</button>
                         </form>
                     </div>
@@ -162,92 +169,17 @@
     </section> -->
     <!-- Feature Area End -->
 
-    <!-- Category Area Starts -->
-    <section class="category-area section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-top text-center">
-                        <h2>Explore photographers by category</h2>
-                        <p>Search based on the categories</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-8">
-                    <div class="single-category text-center mb-4">
-                        <img src="assets/images/nature1.png" alt="category">
-                        <h4>Nature based</h4>
-                        <a href="#" class="secondary-btn"><h5>explore now<span class="flaticon-next"></span></h5></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-8">
-                    <div class="single-category text-center mb-4">
-                        <img src="assets/images/people1.png" alt="category">
-                        <h4>People based</h4>
-                        <a href="#" class="secondary-btn"><h5>explore now<span class="flaticon-next"></span></h5></a>
-                        <!-- <h5>250 open job</h5> -->
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-8">
-                    <div class="single-category text-center mb-4">
-                        <img src="assets/images/landscape2.png" alt="category">
-                        <h4>Man-made based</h4>
-                        <a href="#" class="secondary-btn"><h5>explore now<span class="flaticon-next"></span></h5></a>
-                        <!-- <h5>250 open job</h5> -->
-                    </div>
-                </div>
-                <!-- <div class="col-lg-3 col-md-6">
-                    <div class="single-category text-center mb-4">
-                        <img src="assets/images/cat4.png" alt="category">
-                        <h4>garments & textile</h4>
-                        <h5>250 open job</h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-category text-center mb-4 mb-lg-0">
-                        <img src="assets/images/cat5.png" alt="category">
-                        <h4>marketing and sales</h4>
-                        <h5>250 open job</h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-category text-center mb-4 mb-lg-0">
-                        <img src="assets/images/cat6.png" alt="category">
-                        <h4>engineer & architech</h4>
-                        <h5>250 open job</h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-category text-center mb-4 mb-md-0">
-                        <img src="assets/images/cat7.png" alt="category">
-                        <h4>design & crative</h4>
-                        <h5>250 open job</h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-category text-center">
-                        <img src="assets/images/cat8.png" alt="category">
-                        <h4>customer support</h4>
-                        <h5>250 open job</h5>
-                    </div>
-                </div> -->
-            </div>
-        </div>
-    </section>
-    <!-- Category Area End -->
-
     <!-- Jobs Area Starts -->
-    <section class="jobs-area section-padding3">
+    <section class="jobs-area section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="jobs-title">
+                    <!-- <div class="jobs-title">
                         <h2>Browse our photographers</h2>
-                    </div>
+                    </div> -->
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-lg-12">
                     <div class="jobs-tab tab-item">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -266,8 +198,60 @@
                         </ul>
                     </div>
                 </div>
-            </div>
-            <div class="row">
+            </div> -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <!-- <th>City</th>
+                    <th>Building name</th>
+                    <th>Category</th>
+                    <th>Pricing</th> -->
+                </tr>
+            </thead>
+            <tbody>
+            <?php 
+                if(isset($_GET['search']))
+                {
+                    $filtervalues = $_GET['search'];
+                    $query = "SELECT * FROM business WHERE CONCAT(name,city,building_name,category,pricing) LIKE '%$filtervalues%' ";
+                    $query_run = mysqli_query($conn, $query);
+
+                    if(mysqli_num_rows($query_run) > 0)
+                    {
+                        foreach($query_run as $items)
+                        {
+                            ?>
+                            <tr>
+                                <td><?php $items['p_id']; ?></td>
+                                <td><?php $items['name']; ?></td>
+                                <td><?php $items['description']; ?></td>
+                                <td><?php $items['email']; ?></td>
+                                <td><?php $items['phone']; ?></td>
+                                <!-- <td><?php //$items['city']; ?></td>
+                                <td><?php //$items['building_name']; ?></td>
+                                <td><?php //$items['category']; ?></td>
+                                <td><?php //$items['pricing']; ?></td> -->
+                            </tr>
+                            <?php
+                        }
+                    }
+                    else{
+                        ?>
+                            <tr>
+                                <td>No Record Found</td>
+                            </tr>
+                        <?php
+                    }
+                }
+            ?>
+            </tbody>
+        </table>
+            <!-- <div class="row">
                 <div class="col-lg-12">
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="recent" role="tabpanel" aria-labelledby="home-tab">
@@ -346,7 +330,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- <div class="single-job d-lg-flex justify-content-between">
                         <div class="job-text">
                             <h4>Manager/ Asst. Manager (Quality Assurance)</h4>
@@ -366,12 +350,90 @@
                     </div> -->
                 </div>
             </div>
+            <!-- <div class="more-job-btn mt-5 text-center">
+                <a href="#" class="template-btn">more job post</a>
+            </div> -->
+        </div>
+    </section>
+    <!-- Jobs Area End -->
+
+    <!-- Category Area Starts -->
+    <section class="category-area section-padding3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-top text-center">
+                        <h2>Explore photographers by category</h2>
+                        <p>Search based on the categories</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-8">
+                    <div class="single-category text-center mb-4">
+                        <img src="assets/images/nature1.png" alt="category">
+                        <h4>Nature based</h4>
+                        <a href="#" class="secondary-btn"><h5>explore now<span class="flaticon-next"></span></h5></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8">
+                    <div class="single-category text-center mb-4">
+                        <img src="assets/images/people1.png" alt="category">
+                        <h4>People based</h4>
+                        <a href="#" class="secondary-btn"><h5>explore now<span class="flaticon-next"></span></h5></a>
+                        <!-- <h5>250 open job</h5> -->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8">
+                    <div class="single-category text-center mb-4">
+                        <img src="assets/images/landscape2.png" alt="category">
+                        <h4>Man-made based</h4>
+                        <a href="#" class="secondary-btn"><h5>explore now<span class="flaticon-next"></span></h5></a>
+                        <!-- <h5>250 open job</h5> -->
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-6">
+                    <div class="single-category text-center mb-4">
+                        <img src="assets/images/cat4.png" alt="category">
+                        <h4>garments & textile</h4>
+                        <h5>250 open job</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-category text-center mb-4 mb-lg-0">
+                        <img src="assets/images/cat5.png" alt="category">
+                        <h4>marketing and sales</h4>
+                        <h5>250 open job</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-category text-center mb-4 mb-lg-0">
+                        <img src="assets/images/cat6.png" alt="category">
+                        <h4>engineer & architech</h4>
+                        <h5>250 open job</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-category text-center mb-4 mb-md-0">
+                        <img src="assets/images/cat7.png" alt="category">
+                        <h4>design & crative</h4>
+                        <h5>250 open job</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-category text-center">
+                        <img src="assets/images/cat8.png" alt="category">
+                        <h4>customer support</h4>
+                        <h5>250 open job</h5>
+                    </div>
+                </div> -->
+            </div>
             <div class="more-job-btn mt-5 text-center">
                 <a href="#" class="template-btn">more job post</a>
             </div>
         </div>
     </section>
-    <!-- Jobs Area End -->
+    <!-- Category Area End -->
 
     <!-- Newsletter Area Starts -->
     <section class="newsletter-area section-padding">
