@@ -1,3 +1,11 @@
+<?php 
+        ini_set("display_errors", "1");
+        ini_set("display_startup_errors","1");
+        error_reporting(E_ALL);
+
+        include("PHP/config.php");
+        include("PHP/session.php");
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,10 +81,58 @@
                                 </ul>
                             </li> -->
                             <li class="menu-btn">
-                                <a href="signin.php" class="login">log in</a>
-                                <a href="register.php" class="template-btn">sign up</a>
+                            <button type="submit" class="btn btn-dark" data-toggle="modal" data-target="#myProfile">
+                                My Profile
+                            </button>
+                                <!-- <a href="signin.php" class="login">log in</a>
+                                <a href="register.php" class="template-btn">sign up</a> -->
                             </li>
                         </ul>
+                        <!-- <div class="hearer_icon d-flex"> -->
+                            <?php
+                               if (isset($_SESSION['client_id'])) {
+                                $id = $_SESSION['client_id'];
+                            
+                                $query = mysqli_query($conn, "SELECT * FROM client WHERE client_id='$id'") or die("Select Error");
+                                $fetch = mysqli_fetch_array($query);
+                            
+                                // Rest of the code that uses $fetch array
+                                } else {
+                                    // Handle the case when client_id is not set in the session
+                                    echo "Client ID not found in the session.";
+                                }
+
+                                // if (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['client_id'])) {
+                                //     $id = $_SESSION['client_id'];
+                                //     $query = mysqli_query($conn, "SELECT * FROM client WHERE client_id='$id'") or die("Select Error");
+                                //     $fetch = mysqli_fetch_array($query);
+                                
+                                //     // Rest of the code that uses $fetch array
+                                // } else {
+                                //     // Handle the case when client_id is not set in the session
+                                //     echo "Client ID not found in the session.";
+                                // }
+                            ?>
+
+                            
+                                    <ul>
+                                    <!-- <a href="signin.php" class="btn_3"> -->
+                                    <!-- <button type="button" class="template-btn" style="height:40px" data-toggle="modal" data-target="#myProfile">
+                                        My Profile
+                                    </button> -->
+                                        <!-- <li>Welcome:<a href="#profile" href  data-toggle="modal"><i class="icon-user icon-white"></i><?php //echo $fetch['First_Name']; ?>&nbsp;<?php //echo $fetch['Last_Name'];?></a></li> -->
+                                    </ul>
+                                    
+                                    
+                            
+                              
+                                <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <div class="single_product">
+    
+                                    </div>
+                                </div> -->
+                                
+                            <!-- </div> -->
                     </div>
                 </div>
             </div>
@@ -104,13 +160,7 @@
     <!-- Banner Area End -->
 
     <!-- Search Area Starts -->
-    <?php 
-        ini_set("display_errors", "1");
-        ini_set("display_startup_errors","1");
-        error_reporting(E_ALL);
-
-        include("PHP/config.php");
-    ?>
+    
     <div class="search-area">
         <div class="search-bg">
             <div class="container">
@@ -675,6 +725,50 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             </div>
         </footer>
         <!-- Footer Area End -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="myProfile" role="dialog">
+            <div class="modal-dialog">
+            
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                <h4 class="modal-title">My Profile</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <?php
+                        $id = $_SESSION['client_id'];
+                    
+                        $query = mysqli_query($conn, "SELECT * FROM client WHERE client_id='$id'") or die("Select Error");
+                        $fetch = mysqli_fetch_array($query);
+                    ?>
+
+                <form  enctype='multipart/form-data' method="POST">
+                    <center>
+                    <table>       
+                        <tr>
+                            <td class="profile">Name:</td><td class="profile">&nbsp;<?php echo $fetch['fname'];?>&nbsp;<?php echo $fetch['lname'];?></td>
+                        </tr>
+                        <tr>
+                            <td class="profile">Email Address:</td><td class="profile">&nbsp;<?php echo $fetch['email'];?></td>
+                        </tr>								
+                        <tr>
+                            <td class="profile">Phone Number:</td><td class="profile">&nbsp;<?php echo $fetch['phone'];?></td>
+                        </tr>
+                    </table>
+                </center>
+
+                </div>
+                <div class="modal-footer">
+                <a href="account.php?id=<?php echo $fetch['client_id']; ?>"><input type="button" class="btn btn-success" name="edit" value="Edit Account"></a>
+                <a href="signin.php"><input type="button" class="btn btn-danger" name="" value="Log Out"></a>
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="height:40px">Close</button>
+                </div>
+            </div>
+            
+            </div>
+        </div>
 
 
     <!-- Javascript -->

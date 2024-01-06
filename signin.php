@@ -28,7 +28,7 @@
                         $row = mysqli_fetch_assoc($result);
                         if($passwordmd5 == $row['password']){
                             $_SESSION['email'] = $row['email'];
-                            header("Location: index.php");
+                            header("Location: homepage.php");
                         }
 
                         else{

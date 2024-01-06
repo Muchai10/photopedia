@@ -254,55 +254,73 @@
                       include_once "PHP/config.php";
                       if(isset($_GET['editid'])){
                         $id = mysqli_real_escape_string($conn, $_GET['editid']);
-                        $query = "SELECT * FROM client WHERE p_id = '$id'";
+                        $query = "SELECT * FROM business WHERE p_id = '$id'";
                         $query_run = mysqli_query($conn, $query);
 
                         if(mysqli_num_rows($query_run) > 0){
-                          $client = mysqli_fetch_array($query_run);
+                          $business = mysqli_fetch_array($query_run);
                           ?>
                         
                       <form enctype='multipart/form-data' method="POST">
-                        <input type="hidden" name="client_id" id="client_id" value="<?=$client['client_id']; ?>">
+                        <input type="hidden" name="p_id" id="p_id" value="<?=$business['p_id']; ?>">
                         <div class="mb-3 row">
-                          <label for="fname" class="col-md-2 col-form-label">First Name</label>
+                          <label for="name" class="col-md-2 col-form-label">Name</label>
                           <div class="col-md-10">
-                          <input type="text" class="form-control" name="fname" id="fname" value="<?=$client['fname']; ?>" required>
+                          <input type="text" class="form-control" name="name" id="name" value="<?=$business['name']; ?>" required>
                           </div>
                         </div>
                         <div class="mb-3 row">
-                          <label for="lname" class="col-md-2 col-form-label">Last Name</label>
+                          <label for="description" class="col-md-2 col-form-label">Description</label>
                           <div class="col-md-10">
-                          <input type="text" class="form-control" name="lname" id="lname" value="<?=$client['lname']; ?>" required>
+                          <input type="text" class="form-control" name="description" id="description" value="<?=$business['description']; ?>" required>
                           </div>
                         </div>
                         <div class="mb-3 row">
                           <label for="email" class="col-md-2 col-form-label">Email</label>
                           <div class="col-md-10">
-                          <input type="text" class="form-control" name="email" id="email" value="<?=$client['email']; ?>" required>
+                          <input type="text" class="form-control" name="email" id="email" value="<?=$business['email']; ?>" >
                           </div>
                         </div>
                         <div class="mb-3 row">
                           <label for="phone" class="col-md-2 col-form-label">Phone</label>
                           <div class="col-md-10">
-                          <input type="number" class="form-control" name="phone" id="phone" value="<?=$client['phone']; ?>" required>
+                          <input type="number" class="form-control" name="phone" id="phone" value="<?=$business['phone']; ?>" required>
                           </div>
                         </div>
                         <div class="mb-3 row">
-                          <label for="password" class="col-md-2 col-form-label">Password</label>
+                          <label for="city" class="col-md-2 col-form-label">City</label>
                           <div class="col-md-10">
-                          <input type="password" class="form-control" name="password" id="password"  value="<?=$client['password']; ?>" required>
+                          <input type="text" class="form-control" name="city" id="city"  value="<?=$business['city']; ?>" required>
                           </div>
                         </div>
                         <div class="mb-3 row">
-                          <label for="cpassword" class="col-md-2 col-form-label">Confirm Password</label>
+                          <label for="building_name" class="col-md-2 col-form-label">Building Name</label>
                           <div class="col-md-10">
-                          <input type="password" class="form-control" name="cpassword" id="cpassword" value="<?=$client['cpassword']; ?>" required>
+                          <input type="text" class="form-control" name="building_name" id="building_name" value="<?=$business['building_name']; ?>" required>
                           </div>
                         </div>
+                        <div class="mb-3 row">
+                          <label for="category" class="col-md-2 col-form-label">Category</label>
+                          <div class="col-md-10">
+                          <input type="text" class="form-control" name="category" id="category" value="<?=$business['category']; ?>" required>
+                          </div>
+                        </div>
+                        <div class="mb-3 row">
+                          <label for="pricing" class="col-md-2 col-form-label">Pricing</label>
+                          <div class="col-md-10">
+                          <input type="text" class="form-control" name="pricing" id="pricing"  value="<?=$business['pricing']; ?>" required>
+                          </div>
+                        </div>
+                        <!-- <div class="mb-3 row">
+                          <label for="image" class="col-md-2 col-form-label">Image</label>
+                          <div class="col-md-10">
+                          <input type="file" class="form-control" name="image" id="image" >
+                          </div>
+                        </div> -->
                         <br>
                         <div class="mb-3">                      
                               <button type="submit" class="btn btn btn-primary" name="edit" id="edit" style="height:40px">Save Changes</button> &nbsp; &nbsp; &nbsp;
-                              <button type="button" class="btn btn-danger" style="height:40px"><a href="clients.php" class="text-white">
+                              <button type="button" class="btn btn-danger" style="height:40px"><a href="businesses.php" class="text-white">
                               Go Back
                               </a>
                             </button>
@@ -331,54 +349,53 @@
                   <?php
                     if(isset($_POST['edit']))
                     {
-                        $id = mysqli_real_escape_string($conn,$_POST['client_id']);
-                        $fname = mysqli_real_escape_string($conn,$_POST['fname']);
-                        $lname = mysqli_real_escape_string($conn,$_POST['lname']);
-                        $email = mysqli_real_escape_string($conn,$_POST['email']);
-                        $phonenumber = mysqli_real_escape_string($conn,$_POST['phone']);               
-                        $password = mysqli_real_escape_string($conn,$_POST['password']);
-                        $cpassword = mysqli_real_escape_string($conn,$_POST['cpassword']);
-                                                 
-                        $passwordmd5 = md5($password);
-                        $cpasswordmd5 = md5($cpassword);            
-                         
-                        if($passwordmd5 != $cpasswordmd5){
-                          echo '<script> alert("Passwords Do Not Match") </script>';
+                      $id = mysqli_real_escape_string($conn,$_POST['p_id']);
+                      $name = mysqli_real_escape_string($conn,$_POST['name']);
+                      $desc = mysqli_real_escape_string($conn,$_POST['description']);
+                      $email = mysqli_real_escape_string($conn,$_POST['email']);
+                      $phone = mysqli_real_escape_string($conn,$_POST['phone']);
+                      $city = mysqli_real_escape_string($conn,$_POST['city']);
+                      $building = mysqli_real_escape_string($conn,$_POST['building_name']);
+                      $category = mysqli_real_escape_string($conn,$_POST['category']);
+                      $price = mysqli_real_escape_string($conn,$_POST['pricing']);
+
+                      // if(isset($_FILES["image"])){
+                      //   $image_name = $_FILES["image"] ["name"];
+                      //   $image_type = $_FILES["image"] ["type"];
+                      //   $image_size = $_FILES["image"] ["size"];
+                      //   $image_temp = $_FILES["image"] ["tmp_name"];
+                      //   $image_error = $_FILES["image"] ["error"];
+                      // } else {
+                      //     $image_name = $business['image']; // use existing image name from the database
+                      // }
+                          
+                      // if ($image_error > 0){
+                      //     $_SESSION['error'] = "Error uploading file! Code $image_error.";
+                      // } else {
+                      //     if($image_size > 30000000000) //conditions for the file
+                      //     {
+                      //         $_SESSION['error'] = "Format is not allowed or file size is too big!";
+                      //     }
+                      //     else
+                      //     {
+                      //         move_uploaded_file($image_temp,"../Photos/".$image_name);
+                      //     }
+                      // }
+                                                                     
+                      $update = mysqli_query($conn,"UPDATE business SET name = '$name',description = '$desc',email = '$email', phone = '$phone', city = '$city', building_name = '$building', category = '$category', pricing = '$price' WHERE p_id = '$id'");
+
+                        if(!$update)
+                        {
+                            echo mysqli_error($conn);
                         }
-                        else{
-                          $update = mysqli_query($conn,"UPDATE client SET fname = '$fname',lname = '$lname',email = '$email', phone = '$phonenumber', password = '$passwordmd5', cpassword = '$cpasswordmd5' WHERE client_id = '$id'");
-
-                          if(!$update)
-                          {
-                              echo mysqli_error($conn);
-                          }
-                          else
-                          {  
-                              echo '<script> alert("Successful") </script>';
-                              //header("Location: clients.php");
-                          }
-                          }
+                        else
+                        {  
+                            echo '<script> alert("Successful") </script>';
+                            //header("Location: clients.php");
+                        }
+                          
                         }  
-                        // $insert = mysqli_query($conn,"UPDATE client SET fname = '$fname',lname = '$lname',email = '$email', phone = '$phonenumber', password = '$passwordmd5', cpassword = '$cpasswordmd5' WHERE client_id = '$id'");
-                        // $query = mysqli_query($conn,$insert);
-
-                        // if(!$query)
-                        // {
-                        //   //echo '<script>alert("Connection error") </script>';
-                        //     echo mysqli_error($conn);
-                        // }
-                        // else
-                        // {  
-                        //   if($passwordmd5 != $cpasswordmd5){
-                        //       echo '<script> alert("Passwords Do Not Match") </script>';
-                        //   }
-                        //   else{                    
-                        //       echo '<script> alert("Successful") </script>';
-                        //       //header('location:students.php');
-                        //   }  
-                        // }
                     
-                        
                   ?>
                   
 
