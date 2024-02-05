@@ -57,7 +57,7 @@
                     </div>  
                     <div class="main-menu">
                         <ul>
-                            <li class="active"><a href="index.html">home</a></li>
+                            <li class="active"><a href="homepage.php">home</a></li>
                             <li><a href="about.html">services</a></li>
                             <li><a href="about.html">booking</a></li>
                             <li><a href="about.html">payment</a></li>
@@ -89,17 +89,18 @@
                             </li>
                         </ul>
                         <!-- <div class="hearer_icon d-flex"> -->
-                            <?php
-                               if (isset($_SESSION['client_id'])) {
-                                $id = $_SESSION['client_id'];
-                            
-                                $query = mysqli_query($conn, "SELECT * FROM client WHERE client_id='$id'") or die("Select Error");
+                            <?php                             
+                               if (isset($_SESSION['email'])) {
+                                $email = $_SESSION['email'];
+                                error_log('sessionid: ' . $_SESSION['email']);
+
+                                $query = mysqli_query($conn, "SELECT * FROM client WHERE email ='$email'") or die("Select Error");
                                 $fetch = mysqli_fetch_array($query);
                             
                                 // Rest of the code that uses $fetch array
                                 } else {
                                     // Handle the case when client_id is not set in the session
-                                    echo "Client ID not found in the session.";
+                                    // echo "Client ID not found in the session.";
                                 }
 
                                 // if (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['client_id'])) {
@@ -249,21 +250,7 @@
                     </div>
                 </div>
             </div> -->
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <!-- <th>City</th>
-                    <th>Building name</th>
-                    <th>Category</th>
-                    <th>Pricing</th> -->
-                </tr>
-            </thead>
-            <tbody>
+
             <?php 
                 if(isset($_GET['search']))
                 {
@@ -299,8 +286,7 @@
                     }
                 }
             ?>
-            </tbody>
-        </table>
+  
             <!-- <div class="row">
                 <div class="col-lg-12">
                     <div class="tab-content" id="myTabContent">
@@ -738,9 +724,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 </div>
                 <div class="modal-body">
                     <?php
-                        $id = $_SESSION['client_id'];
+                        $email = $_SESSION['email'];
                     
-                        $query = mysqli_query($conn, "SELECT * FROM client WHERE client_id='$id'") or die("Select Error");
+                        $query = mysqli_query($conn, "SELECT * FROM client WHERE email ='$email'") or die("Select Error");
                         $fetch = mysqli_fetch_array($query);
                     ?>
 

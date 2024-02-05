@@ -71,7 +71,7 @@
             <label for="email">Email</label>
         </div>
         <div class="input-box">
-            <input type="password" class="input-field" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" autocomplete="off" required>
+            <input type="password" class="input-field" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must be 8 or more characters" autocomplete="off" required>
             <label for="password">Password</label>
         </div>
         <div class="forgot">

@@ -49,7 +49,7 @@
                     </div>  
                     <div class="main-menu">
                         <ul>
-                            <li class="active"><a href="index.html">home</a></li>
+                            <li class="active"><a href="homepage.php">home</a></li>
                             <li><a href="about.html">services</a></li>
                             <li><a href="about.html">booking</a></li>
                             <li><a href="about.html">payment</a></li>
@@ -129,7 +129,7 @@
                                 <option value="3">Mombasa</option>
                                 <option value="4">Kajiado</option>
                             </select>
-                            <input type="text" placeholder="Search Keyword" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'" id="search" name="search" value="<?php if(isset($_GET['search'])){echo $_GET['search']; }?>" required>
+                            <input type="text" placeholder="Search Keyword" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'" id="search" name="search" value="<?php  if(isset($_GET['search'])){echo $_GET['search']; }?>" required>
                             <button type="submit" class="template-btn">search</button>
                         </form>
                     </div>
@@ -218,7 +218,7 @@
                 if(isset($_GET['search']))
                 {
                     $filtervalues = $_GET['search'];
-                    $query = "SELECT * FROM business WHERE CONCAT(name,city,building_name,category,pricing) LIKE '%$filtervalues%' ";
+                    $query = "SELECT * FROM business WHERE CONCAT(image,name,city,building_name,category,pricing) LIKE '%$filtervalues%' ";
                     $query_run = mysqli_query($conn, $query);
 
                     if(mysqli_num_rows($query_run) > 0)
@@ -227,11 +227,12 @@
                         {
                             ?>
                             <tr>
-                                <td><?php $items['p_id']; ?></td>
-                                <td><?php $items['name']; ?></td>
-                                <td><?php $items['description']; ?></td>
-                                <td><?php $items['email']; ?></td>
-                                <td><?php $items['phone']; ?></td>
+                                <td><?php echo $items['p_id']; ?></td>
+                                <td><?php echo $items['image']; ?></td>
+                                <td><?php echo $items['name']; ?></td>
+                                <td><?php echo $items['description']; ?></td>
+                                <td><?php echo $items['email']; ?></td>
+                                <td><?php echo $items['phone']; ?></td>
                                 <!-- <td><?php //$items['city']; ?></td>
                                 <td><?php //$items['building_name']; ?></td>
                                 <td><?php //$items['category']; ?></td>

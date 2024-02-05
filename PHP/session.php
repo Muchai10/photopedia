@@ -7,13 +7,14 @@ session_start();
 
 if (!function_exists('logged_in')) {
     function logged_in() {
-        return isset($_SESSION['client_id']);
+        error_log('sessionid: ' . $_SESSION['email']);
+        return isset($_SESSION['email']);
     }
 }
 
 if(!function_exists('confirm_logged_in')){
     function confirm_logged_in() {
-    if(isset($_SESSION['client_id']) && !empty($_SESSION['client_id'])) {
+    if(isset($_SESSION['email']) && !empty($_SESSION['email'])) {
         // User is logged in
         return true;
     } else {
