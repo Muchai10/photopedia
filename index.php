@@ -199,7 +199,7 @@
                     </div>
                 </div>
             </div> -->
-        <table class="table table-bordered">
+        <!-- <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -207,13 +207,13 @@
                     <th>Description</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <!-- <th>City</th>
+                    <th>City</th>
                     <th>Building name</th>
                     <th>Category</th>
-                    <th>Pricing</th> -->
+                    <th>Pricing</th> 
                 </tr>
             </thead>
-            <tbody>
+            <tbody> -->
             <?php 
                 if(isset($_GET['search']))
                 {
@@ -226,32 +226,59 @@
                         foreach($query_run as $items)
                         {
                             ?>
-                            <tr>
-                                <td><?php echo $items['p_id']; ?></td>
-                                <td><?php echo $items['image']; ?></td>
-                                <td><?php echo $items['name']; ?></td>
-                                <td><?php echo $items['description']; ?></td>
-                                <td><?php echo $items['email']; ?></td>
-                                <td><?php echo $items['phone']; ?></td>
-                                <!-- <td><?php //$items['city']; ?></td>
+                            <div class="single-job mb-4 d-lg-flex justify-content-between">
+                            <div class="job-text">
+                                <h4><?php echo $items['name']; ?></h4>
+                                <ul class="mt-4">
+                                    <li class="mb-3"><h5><i class="fa fa-map-marker"></i> <?php echo $items['building_name'].' '.$items['city']; ?></h5></li>
+                                    <li class="mb-3"><h5><i class="fa fa-pie-chart"></i> <?php echo $items['email'].' '.$items['phone']; ?></h5></li>
+                                    <li><h5><i class="fa fa-clock-o"></i> <?php echo $items['category']; ?></h5></li>
+                                </ul>
+                            </div>
+                            <div class="job-img align-self-center">
+                                <img src="assets/images/job1.png" alt="job">
+                                <!-- <img src="<?php //echo $items['image']; ?>" alt="job"> -->
+                            </div>
+                            <div class="job-btn align-self-center">
+                                <!-- <a href="#" class="third-btn job-btn1">full time</a> -->
+                                <a href="#" class="third-btn">More Details</a>
+                            </div>
+            </div>
+
+                            <!-- <tr>
+                                <td><?php //echo $items['p_id']; ?></td>
+                                <td><?php //echo $items['image']; ?></td>
+                                <td><?php //echo $items['name']; ?></td>
+                                <td><?php //echo $items['description']; ?></td>
+                                <td><?php //echo $items['email']; ?></td>
+                                <td><?php //echo $items['phone']; ?></td>
+                                <td><?php //$items['city']; ?></td>
                                 <td><?php //$items['building_name']; ?></td>
                                 <td><?php //$items['category']; ?></td>
-                                <td><?php //$items['pricing']; ?></td> -->
-                            </tr>
+                                <td><?php //$items['pricing']; ?></td> 
+                            </tr> -->
                             <?php
                         }
                     }
                     else{
                         ?>
-                            <tr>
+                            <!-- <tr>
                                 <td>No Record Found</td>
-                            </tr>
+                            </tr> -->
+
+                            <div class="single-job mb-4 d-lg-flex justify-content-between">
+                                <div class="job-text">
+                                    <h4>No Record Found</h4>
+                                </div>
+                            </div>
                         <?php
                     }
                 }
             ?>
-            </tbody>
+            <!-- </tbody>
         </table>
+            </div> -->
+            
             <!-- <div class="row">
                 <div class="col-lg-12">
                     <div class="tab-content" id="myTabContent">
@@ -460,7 +487,7 @@
     <!-- Newsletter Area End -->
 
     <!-- Employee Area Starts -->
-    <section class="employee-area section-padding">
+    <!-- <section class="employee-area section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -505,7 +532,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Employee Area End -->
 
     <!-- News Area Starts -->

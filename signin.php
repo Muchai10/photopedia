@@ -67,7 +67,7 @@
         </div>
         <form method="POST">
         <div class="input-box">
-            <input type="text" class="input-field" name="email" id="email" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" autocomplete="off" required>
+            <input type="email" class="input-field" name="email" id="email" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" title="Must be a valid email" autocomplete="off" required>
             <label for="email">Email</label>
         </div>
         <div class="input-box">

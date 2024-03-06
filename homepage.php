@@ -251,11 +251,45 @@
                 </div>
             </div> -->
 
+            <!-- <div class="single-job mb-4 d-lg-flex justify-content-between">
+                        <div class="job-text">
+                            <h4>Assistant Executive - Production/ Quality Control</h4>
+                            <ul class="mt-4">
+                                <li class="mb-3"><h5><i class="fa fa-map-marker"></i> new yourk, USA</h5></li>
+                                <li class="mb-3"><h5><i class="fa fa-pie-chart"></i> Applied Chemistry & Chemical Engineering / Chemistry</h5></li>
+                                <li><h5><i class="fa fa-clock-o"></i> Deadline Deadline: Dec 11, 2018</h5></li>
+                            </ul>
+                        </div>
+                        <div class="job-img align-self-center">
+                            <img src="assets/images/job1.png" alt="job">
+                        </div>
+                        <div class="job-btn align-self-center">
+                            <a href="#" class="third-btn job-btn1">full time</a>
+                            <a href="#" class="third-btn">apply</a>
+                        </div>
+            </div> -->
+
+            <!--<div class="col-lg-12">
+            <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>City</th>
+                    <th>Building name</th>
+                    <th>Category</th>
+                    <th>Pricing</th> 
+                </tr>
+            </thead>
+            <tbody> -->
             <?php 
                 if(isset($_GET['search']))
                 {
                     $filtervalues = $_GET['search'];
-                    $query = "SELECT * FROM business WHERE CONCAT(name,city,building_name,category,pricing) LIKE '%$filtervalues%' ";
+                    $query = "SELECT * FROM business WHERE CONCAT(image,name,city,building_name,category,pricing) LIKE '%$filtervalues%' ";
                     $query_run = mysqli_query($conn, $query);
 
                     if(mysqli_num_rows($query_run) > 0)
@@ -263,29 +297,58 @@
                         foreach($query_run as $items)
                         {
                             ?>
-                            <tr>
-                                <td><?php $items['p_id']; ?></td>
-                                <td><?php $items['name']; ?></td>
-                                <td><?php $items['description']; ?></td>
-                                <td><?php $items['email']; ?></td>
-                                <td><?php $items['phone']; ?></td>
-                                <!-- <td><?php //$items['city']; ?></td>
+                            <div class="single-job mb-4 d-lg-flex justify-content-between">
+                            <div class="job-text">
+                                <h4><?php echo $items['name']; ?></h4>
+                                <ul class="mt-4">
+                                    <li class="mb-3"><h5><i class="fa fa-map-marker"></i> <?php echo $items['building_name'].' '.$items['city']; ?></h5></li>
+                                    <li class="mb-3"><h5><i class="fa fa-pie-chart"></i> <?php echo $items['email'].' '.$items['phone']; ?></h5></li>
+                                    <li><h5><i class="fa fa-clock-o"></i> <?php echo $items['category']; ?></h5></li>
+                                </ul>
+                            </div>
+                            <div class="job-img align-self-center">
+                                <img src="assets/images/job1.png" alt="job">
+                                <!-- <img src="<?php //echo $items['image']; ?>" alt="job"> -->
+                            </div>
+                            <div class="job-btn align-self-center">
+                                <!-- <a href="#" class="third-btn job-btn1">full time</a> -->
+                                <a href="business.php" class="third-btn">More Details</a>
+                            </div>
+            </div>
+
+                            <!-- <tr>
+                                <td><?php //echo $items['p_id']; ?></td>
+                                <td><?php //echo $items['image']; ?></td>
+                                <td><?php //echo $items['name']; ?></td>
+                                <td><?php //echo $items['description']; ?></td>
+                                <td><?php //echo $items['email']; ?></td>
+                                <td><?php //echo $items['phone']; ?></td>
+                                <td><?php //$items['city']; ?></td>
                                 <td><?php //$items['building_name']; ?></td>
                                 <td><?php //$items['category']; ?></td>
-                                <td><?php //$items['pricing']; ?></td> -->
-                            </tr>
+                                <td><?php //$items['pricing']; ?></td> 
+                            </tr> -->
                             <?php
                         }
                     }
                     else{
                         ?>
-                            <tr>
+                            <!-- <tr>
                                 <td>No Record Found</td>
-                            </tr>
+                            </tr> -->
+
+                            <div class="single-job mb-4 d-lg-flex justify-content-between">
+                                <div class="job-text">
+                                    <h4>No Record Found</h4>
+                                </div>
+                            </div>
                         <?php
                     }
                 }
             ?>
+            <!-- </tbody>
+        </table>
+            </div> -->
   
             <!-- <div class="row">
                 <div class="col-lg-12">
@@ -495,7 +558,7 @@
     <!-- Newsletter Area End -->
 
     <!-- Employee Area Starts -->
-    <section class="employee-area section-padding">
+    <!-- <section class="employee-area section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -540,7 +603,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Employee Area End -->
 
     <!-- News Area Starts -->

@@ -71,19 +71,19 @@
         </div>
         <form method="POST">
         <div class="input-box">
-            <input type="text" class="input-field" name="fname" id="fname" pattern="^(?=.{1,40}$)[a-zA-Z]+(?:[-'\s][a-zA-Z]+)*$" autocomplete="off" required>
+            <input type="text" class="input-field" name="fname" id="fname" pattern="[A-Za-z]+" title="Name should only contain letters" autocomplete="off" required>
             <label for="fname">First Name</label>
         </div>
         <div class="input-box">
-            <input type="text" class="input-field" name="lname" id="lname" pattern="^(?=.{1,40}$)[a-zA-Z]+(?:[-'\s][a-zA-Z]+)*$" autocomplete="off" required>
+            <input type="text" class="input-field" name="lname" id="lname" pattern="[A-Za-z]+" title="Name should only contain letters"  autocomplete="off" required>
             <label for="lname">Last Name</label>
         </div>
         <div class="input-box">
-            <input type="text" class="input-field" name="email" id="email" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" autocomplete="off" required>
+            <input type="email" class="input-field" name="email" id="email" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" title="Must be a valid email" autocomplete="off" required>
             <label for="email">Email</label>
         </div>
         <div class="input-box">
-            <input type="tel" class="input-field" name="phone" id="phone" pattern="^\+?\d{0,13}" title="Phone Number (Format: +254 700 000000)" autocomplete="off" required>
+            <input type="tel" class="input-field" name="phone" id="phone" pattern="^\+?\d{10,13}" title="Phone Number (Format: +254 700 000000)" autocomplete="off" required>
             <label for="phone">Phone Number</label>
         </div>
         <div class="input-box">
