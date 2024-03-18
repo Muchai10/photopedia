@@ -241,6 +241,8 @@
                           <th>Name</th>
                           <th>Email</th>
                           <th>Phone</th>
+                          <th>Instagram Username</th>
+                          <th>Website</th>
                           <th>City</th>
                           <th>Building name</th>
                           <th>Category</th>
@@ -269,6 +271,8 @@
                           <td><?=$row["name"]?></td>
                           <td><?=$row["email"]?></td>
                           <td><?=$row["phone"]?></td>
+                          <td><?=$row["ig_handle"]?></td>
+                          <td><?=$row["website"]?></td>
                           <td><?=$row["city"]?></td>
                           <td><?=$row["building_name"]?></td>
                           <td><?=$row["category"]?></td>
@@ -345,6 +349,14 @@
                             <input type="number" class="form-control" name="phone" id="phone" required>
                             </div>
                             <div class="form-group">
+                            <label for="phone">Instagram Username:</label>
+                            <input type="text" class="form-control" name="ig_handle" id="ig_handle" required>
+                            </div>
+                            <div class="form-group">
+                            <label for="phone">Website (optional):</label>
+                            <input type="text" class="form-control" name="website" id="website" required>
+                            </div>
+                            <div class="form-group">
                             <label for="city">City:</label>
                             <input type="text" class="form-control" name="city" id="city" required>
                             </div>
@@ -415,6 +427,8 @@
                         $desc = mysqli_real_escape_string($conn,$_POST['description']);
                         $email = mysqli_real_escape_string($conn,$_POST['email']);
                         $phone = mysqli_real_escape_string($conn,$_POST['phone']);
+                        $ig = mysqli_real_escape_string($conn,$_POST['ig_handle']);
+                        $website = mysqli_real_escape_string($conn,$_POST['website']);
                         $city = mysqli_real_escape_string($conn,$_POST['city']);
                         $building = mysqli_real_escape_string($conn,$_POST['building']);
                         $price = mysqli_real_escape_string($conn,$_POST['price']);
@@ -470,8 +484,8 @@
                         
 
                         $insert = mysqli_query($conn,"INSERT INTO business
-                        (image,name,description,email,phone,city,building_name,category,pricing) 
-                        VALUES ('$image_name','$name','$desc','$email','$phone','$city','$building','$category','$price')");
+                        (image,name,description,email,phone,ig_handle,website,city,building_name,category,pricing) 
+                        VALUES ('$image_name','$name','$desc','$email','$phone','$ig','$website','$city','$building','$category','$price')");
                 
                         if(!$insert)
                         {

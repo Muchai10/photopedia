@@ -174,42 +174,93 @@
                                 </div>
                             </div>
                         </div> -->
-                        <div class="single-content2 py-4">
-                            <h4>Senior Laravel Developer <br>It Park International, USA</h4>
-                            <p>Senectus non fames aenean montes fringilla. Ipsum phasellus sagittis porttitor quam malesuada montes molestie sollicitudin eleifend dis diam dapibus aenean suspendisse elit pretium, varius pharetra natoque penatibus aptent. Proin neque.</p>
-                        </div>
-                        <div class="single-content3 py-4">
-                            <h4>vacancy</h4>
-                            <span class="ml-4">03</span>
-                        </div>
-                        <div class="single-content4 py-4">
-                            <h4>job responsibility</h4>
-                            <p>Senectus non fames aenean montes fringilla. Ipsum phasellus sagittis porttitor quam malesuada montes molestie sollicitudin eleifend dis diam dapibus aenean suspendisse elit pretium, varius pharetra natoque penatibus aptent. Proin neque.</p>
-                            <ul>
-                                <li class="mb-2">Mate dropped a clanger cuppa I chinwag  one plastered cheesed.</li>
-                                <li class="mb-2">Mate dropped a clanger cuppa I chinwag  one plastered.</li>
-                                <li class="mb-2">Dropped a clanger cuppa I chinwag  one plastered chee</li>
-                                <li>Cuppa I chinwag  one plastered cheesed.</li>
-                            </ul>
-                        </div>
-                        <div class="single-content5 py-4">
-                            <h4>Educational Requirements</h4>
-                            <p>Diploma in Engineering in Computer Science & Engineering, Bachelor in Engineering (BEngg) in Engineering (BEngg) in Computer Science & Enginetering</p>
-                            <p>Skills Required: JavaScript,PHP,WordPress,HTML5 & CSS3</p>
-                        </div>
-                        <div class="single-content6 py-4">
-                            <h4>employment status</h4>
-                            <span>Part Time/Full Time</span>
-                        </div>
-                        <div class="single-content7 py-4">
-                            <h4>other benifits</h4>
-                            <ul class="mt-3">
-                                <li class="mb-2">Mate dropped a clanger cuppa I chinwag  one plastered cheesed.</li>
-                                <li class="mb-2">Mate dropped a clanger cuppa I chinwag  one plastered.</li>
-                                <li class="mb-2">Dropped a clanger cuppa I chinwag  one plastered chee</li>
-                                <li>Cuppa I chinwag  one plastered cheesed.</li>
-                            </ul>
-                        </div>
+                        <?php 
+                            if(isset($_GET['id'])) {
+                                $p_id =  $_GET['id'];
+                                $query = "SELECT * FROM business WHERE p_id = $p_id";
+                                $query_run = mysqli_query($conn, $query);
+
+                                if($query_run && mysqli_num_rows($query_run) > 0) {
+                                    $business = mysqli_fetch_assoc($query_run);
+                                    // Display the details of the business
+                                    ?>
+                                    <!-- <div class="single-business-details">
+                                        <h2><?php //echo $business['name']; ?></h2>
+                                        <p><?php //echo $business['description']; ?></p>
+                                        <p>Email: <?php //echo $business['email']; ?></p>
+                                        <p>Phone: <?php //echo $business['phone']; ?></p>
+                                        <p>Location: <?php //echo $business['building_name'].', '.$business['city']; ?></p>
+                                        <p>Category: <?php //echo $business['category']; ?></p>
+                                        <p>Pricing: <?php //echo $business['pricing']; ?></p>
+                                    </div> -->
+                                    
+                                    <div class="single-content2 py-4">
+                                        <h2><?php echo $business['name']; ?></h2>       
+                                        <p><?php echo $business['description']; ?></p>
+                                    </div>
+                                    <div class="single-content3 py-4">
+                                        <h4>Contact Information</h4>
+                                        <span><?php echo $business['email']; ?></span>
+                                        <span><?php echo $business['phone']; ?></span>                      
+                                        <!-- <span class="ml-4">03</span> -->
+                                    </div>
+                                    <!-- <div class="single-content4 py-4">
+                                        <h4>Location</h4>
+                                        <p>We are based in:</p>
+                                        <ul class="mt-3">
+                                            <li><?php //echo $business['building_name'].', '.$business['city']; ?></li>
+                                            <li class="mb-2">Mate dropped a clanger cuppa I chinwag  one plastered.</li>
+                                            <li class="mb-2">Dropped a clanger cuppa I chinwag  one plastered chee</li>
+                                            <li>Cuppa I chinwag  one plastered cheesed.</li>
+                                        </ul>
+                                    </div> -->
+                                    <div class="single-content4 py-4">
+                                        <h4>Location</h4>
+                                        <p>We are based in:</p>
+                                        <ul class="mt-3">
+                                            <li class="mb-2"><?php echo $business['building_name'].', '.$business['city']; ?></li>
+                                            <!-- <li class="mb-2">Mate dropped a clanger cuppa I chinwag  one plastered.</li>
+                                            <li class="mb-2">Dropped a clanger cuppa I chinwag  one plastered chee</li>
+                                            <li>Cuppa I chinwag  one plastered cheesed.</li> -->
+                                        </ul>
+                                    </div>
+                                    <div class="single-content5 py-4">
+                                        <h4>Category</h4>
+                                        <p><?php echo $business['category']; ?></p>
+                                    </div>
+                                    <div class="single-content6 py-4">
+                                        <h4>Pricing</h4>
+                                        <span><?php echo $business['pricing']; ?></span>
+                                    </div>
+                                    <div class="single-content7 py-4">
+                                        <h4>Portfolio</h4>
+                                        <p>To view our work, you can check us out on our socials/website:</p>  
+                                        <i class="fa fa-instagram"></i>  <a href="<?php echo $business['ig_handle']; ?>"><?php echo $business['name']; ?></a> 
+
+                                        <!-- <div class="social-icons">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                                            </ul>
+                                        </div> -->
+                                        <p></p>                                    
+                                    </div>
+
+
+                                    <?php
+                                } else {
+                                    // No record found for the provided ID
+                                    echo "Business not found.";
+                                }
+                            } else {
+                                // No business ID provided in the URL
+                                echo "Business ID not provided.";
+                            }                                                          
+                        
+                        ?>
+
                     </div>
                 </div>
                 <!-- <div class="col-lg-4">

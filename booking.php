@@ -1,12 +1,3 @@
-<?php 
-        ini_set("display_errors", "1");
-        ini_set("display_startup_errors","1");
-        error_reporting(E_ALL);
-
-        include("PHP/config.php");
-        include("PHP/session.php");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +21,64 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <?php 
+            ini_set("display_errors", "1");
+            ini_set("display_startup_errors","1");
+            error_reporting(E_ALL);
+
+            include("PHP/config.php");
+            include("PHP/session.php");
+
+            if($_SERVER['REQUEST_METHOD'] == "POST"){
+                // $id = $_SESSION['client_id'];
+                $name = mysqli_real_escape_string($conn,$_POST['name']); 
+                $email = mysqli_real_escape_string($conn,$_POST['email']);
+                // $pid = mysqli_real_escape_string($conn,$_POST['p_id']); 
+                $business = mysqli_real_escape_string($conn,$_POST['business']);
+                $type = mysqli_real_escape_string($conn,$_POST['type']);
+                $desired_date = mysqli_real_escape_string($conn,$_POST['desired_date']);
+                $time = mysqli_real_escape_string($conn,$_POST['time']);
+                $location = mysqli_real_escape_string($conn,$_POST['location']);
+                // $verify_query = mysqli_query($conn,"SELECT * FROM client WHERE email ='$email'");
+
+                // if(mysqli_num_rows($verify_query) !=0){
+                // echo "<div class='login-box'>
+                // <div class='login-header'>
+                //         <header>Email has already been taken, Try another One Please</header>
+                //     </div> <br>";
+                // echo "<a href='javascript:self.history.back()'><div class='input-box'>
+                // <input type='submit' class='input-submit' value='Go Back'>
+                // </div></div>";
+                // }  
+                     
+                // else{
+                //     if($passwordmd5 != $cpasswordmd5){
+                //         echo "<div class='login-box'>
+                //         <div class='login-header'>
+                //                 <header>Password Does Not Match</header>
+                //             </div>";
+                //         echo "<a href='javascript:self.history.back()'><div class='input-box'>
+                //         <input type='submit' class='input-submit' value='Go Back'>
+                //     </div></div>";
+                //     }
+                //     else{                    
+                $sql =  "INSERT INTO session (client_id,name,email,business,type,desired_date,time,location) VALUES(NULL,'$name','$email','$business','$type','$desired_date','$time','$location')";
+                mysqli_query($conn, $sql);
+                    //     echo "<div class='login-box'>
+                    //     <div class='login-header'>
+                    //     <header>Registration Successful!</header>
+                    //     </div>";
+                    //     echo "<a href='signin.php'><div class='input-box'>
+                    //     <input type='submit' class='input-submit' value='Sign In'>
+                    // </div></div>";
+                    //}      
+                //}
+    
+            }
+            else { 
+           
+        ?>
+
     <!-- Preloader Starts -->
     <div class="preloader">
         <div class="spinner"></div>
@@ -99,7 +148,7 @@
                                 // Rest of the code that uses $fetch array
                                 } else {
                                     // Handle the case when client_id is not set in the session
-                                    // echo "Client ID not found in the session.";
+                                    echo "Client Id not found in the session.";
                                 }
 
                                 // if (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['client_id'])) {
@@ -175,21 +224,29 @@
     <!-- Contact Form Starts -->
     <section class="contact-form section-padding3">
         <div class="container">
+        <h4>Booking Information</h4>
+        <br>
             <div class="row">
-                <div class="col-lg-9">
-                    <form action="#">
+                <div class="col-lg-12">
+                    <form method="POST">
                         <div class="left">
-                            <input type="text" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" required>
-                            <input type="email" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" required>
-                            <input type="text" placeholder="Enter subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter subject'" required>
+                        <input type="hidden" class="input-field" name="client_id" id="client_id" required>   
+                        <input type="text" placeholder="Name" class="input-field" name="name" id="name" pattern="[A-Za-z]+" title="Name should only contain letters" autocomplete="off" required>
+                        <input type="email" placeholder="Email address" class="input-field" name="email" id="email" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" title="Must be a valid email" autocomplete="off" required>
+                        <!-- <input type="hidden" class="input-field" name="p_id" id="p_id" required>    -->
+                        <input type="text" placeholder="Photography business" class="input-field" name="business" id="business" pattern="[A-Za-z]+" title="Name should only contain letters" autocomplete="off" required>
+                        <input type="text" placeholder="Type of photography session being booked" class="input-field" name="type" id="type" pattern="[A-Za-z]+" title="Name should only contain letters" autocomplete="off" required>
+                        <input type="date" placeholder="Desired date" class="input-field" name="desired_date" id="desired_date" autocomplete="off" required>
+                        <input type="time" placeholder="Time" class="input-field" name="time" id="time" autocomplete="off" required>
+                        <input type="text" placeholder="Location" class="input-field" name="location" id="location" pattern="[A-Za-z]+" title="Location should only contain letters" autocomplete="off" required>             
+                        <input type="submit" name="submit" class="template-btn" value="Proceed to Payment" required>
                         </div>
-                        <div class="right">
-                            <textarea name="message" cols="20" rows="7"  placeholder="Enter Message" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" required></textarea>
-                        </div>
-                        <button type="submit" class="template-btn">subscribe now</button>
+                        <!-- <div class="right">
+                            <textarea name="message" cols="20" rows="7"  placeholder="Enter Message" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" required></textarea> 
+                        </div>   -->
                     </form>
                 </div>
-                <div class="col-lg-3 mb-5 mb-lg-0">
+                <!-- <div class="col-lg-3 mb-5 mb-lg-0">
                     <div class="d-flex">
                         <div class="into-icon">
                             <i class="fa fa-home"></i>
@@ -217,7 +274,7 @@
                             <p>Send us your query anytime!</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -346,6 +403,7 @@
     <script src="assets/js/vendor/gmaps.min.js"></script>
     <script src="assets/js/vendor/ion.rangeSlider.js"></script>
     <script src="assets/js/main.js"></script>
-
+    
+    <?php } ?> 
 </body>
 </html>

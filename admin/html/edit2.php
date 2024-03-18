@@ -288,6 +288,18 @@
                           </div>
                         </div>
                         <div class="mb-3 row">
+                          <label for="email" class="col-md-2 col-form-label">Instagram Link:</label>
+                          <div class="col-md-10">
+                          <input type="text" class="form-control" name="ig_handle" id="ig_handle" value="<?=$business['ig_handle']; ?>" >
+                          </div>
+                        </div>
+                        <div class="mb-3 row">
+                          <label for="email" class="col-md-2 col-form-label">Website</label>
+                          <div class="col-md-10">
+                          <input type="text" class="form-control" name="website" id="website" value="<?=$business['website']; ?>" >
+                          </div>
+                        </div>
+                        <div class="mb-3 row">
                           <label for="city" class="col-md-2 col-form-label">City</label>
                           <div class="col-md-10">
                           <input type="text" class="form-control" name="city" id="city"  value="<?=$business['city']; ?>" required>
@@ -354,6 +366,8 @@
                       $desc = mysqli_real_escape_string($conn,$_POST['description']);
                       $email = mysqli_real_escape_string($conn,$_POST['email']);
                       $phone = mysqli_real_escape_string($conn,$_POST['phone']);
+                      $ig = mysqli_real_escape_string($conn,$_POST['ig_handle']);
+                      $website = mysqli_real_escape_string($conn,$_POST['website']);
                       $city = mysqli_real_escape_string($conn,$_POST['city']);
                       $building = mysqli_real_escape_string($conn,$_POST['building_name']);
                       $category = mysqli_real_escape_string($conn,$_POST['category']);
@@ -382,7 +396,7 @@
                       //     }
                       // }
                                                                      
-                      $update = mysqli_query($conn,"UPDATE business SET name = '$name',description = '$desc',email = '$email', phone = '$phone', city = '$city', building_name = '$building', category = '$category', pricing = '$price' WHERE p_id = '$id'");
+                      $update = mysqli_query($conn,"UPDATE business SET name = '$name',description = '$desc',email = '$email', phone = '$phone',ig_handle = '$ig', website = '$website', city = '$city', building_name = '$building', category = '$category', pricing = '$price' WHERE p_id = '$id'");
 
                         if(!$update)
                         {

@@ -312,7 +312,8 @@
                             </div>
                             <div class="job-btn align-self-center">
                                 <!-- <a href="#" class="third-btn job-btn1">full time</a> -->
-                                <a href="business.php" class="third-btn">More Details</a>
+                                <a href="business.php?id=<?php echo $items['p_id']; ?>" class="third-btn">More Details</a>
+
                             </div>
             </div>
 
@@ -528,7 +529,7 @@
                 </div> -->
             </div>
             <div class="more-job-btn mt-5 text-center">
-                <a href="#" class="template-btn">more job post</a>
+                <a href="#" class="template-btn">more details</a>
             </div>
         </div>
     </section>

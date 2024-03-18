@@ -235,19 +235,22 @@
                     <table class="table table-bordered">
                       <thead>
                         <tr>
-                          <th>Payment ID</th>
-                          <th>Mode</th>
-                          <th>Reference Code</th>
-                          <th>Amount Paid</th>
-                          <th>Order ID</th>
-                          <th>Order Status</th>
-                          <th>Payment Date</th>
+                          <th>S.No</th>
+                          <th>Client ID</th>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Business</th>
+                          <th>Type</th>
+                          <th>Desired Date</th>
+                          <th>Time</th>
+                          <th>Location</th>
+                          <th>Date</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php          
                             include_once "PHP/config.php";
-                            $sql="SELECT * from payment";
+                            $sql="SELECT * from session";
                             $result=$conn-> query($sql);
                             $count=1;
                             if ($result-> num_rows > 0){
@@ -255,9 +258,9 @@
            
                         ?>
                         <tr>
-                          <td><?=$row["Payment_ID"]?></td>
-                          <td><?=$row["Mode"]?></td>
-                          <td><?=$row["Reference_Code"]?></td>
+                          <td><?=$row["session_id"]?></td>
+                          <td><?=$row["client_id"]?></td>
+                          <td><?=$row["name"]?></td>
                           <td><?=$row["Amount_Paid"]?></td>
                           <td><?=$row["Order_ID"]?></td>
                           <td><?=$row["Order_Status"]?></td>
