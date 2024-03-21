@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="logo-area">
-                        <a href="index.html">                        
+                        <a href="index.php">                        
                                 <img src="assets/images/photopedia5.png" alt="" /><span>
                                   
                                 </span>                
@@ -49,9 +49,9 @@
                     </div>  
                     <div class="main-menu">
                         <ul>
-                            <li class="active"><a href="homepage.php">home</a></li>
+                            <li class="active"><a href="index.php">home</a></li>
                             <li><a href="about.html">services</a></li>
-                            <li><a href="about.html">booking</a></li>
+                            <li><a href="booking.php">booking</a></li>
                             <li><a href="about.html">payment</a></li>
                             <li><a href="about.html">reviews</a></li>
 

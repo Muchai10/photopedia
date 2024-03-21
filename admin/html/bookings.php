@@ -225,7 +225,7 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><span>Reviews</span></h4>
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><span>Bookings</span></h4>
 
               <!-- Bordered Table -->
               <div class="card">
@@ -261,10 +261,13 @@
                           <td><?=$row["session_id"]?></td>
                           <td><?=$row["client_id"]?></td>
                           <td><?=$row["name"]?></td>
-                          <td><?=$row["Amount_Paid"]?></td>
-                          <td><?=$row["Order_ID"]?></td>
-                          <td><?=$row["Order_Status"]?></td>
-                          <td><?=$row["Payment_Date"]?></td>
+                          <td><?=$row["email"]?></td>
+                          <td><?=$row["business"]?></td>
+                          <td><?=$row["type"]?></td>
+                          <td><?=$row["desired_date"]?></td>
+                          <td><?=$row["time"]?></td>
+                          <td><?=$row["location"]?></td>
+                          <td><?=$row["date"]?></td>
     
                         <?php
                               $count=$count+1;

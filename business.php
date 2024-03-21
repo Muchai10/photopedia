@@ -45,7 +45,7 @@
                 <div class="row">
                     <div class="col-lg-2">
                         <div class="logo-area">
-                            <a href="index.html">                        
+                            <a href="homepage.php">                        
                                     <img src="assets/images/photopedia5.png" alt="" />                                      
                             </a>
                         </div>
@@ -60,7 +60,7 @@
                         <ul>
                             <li class="active"><a href="homepage.php">home</a></li>
                             <li><a href="about.html">services</a></li>
-                            <li><a href="about.html">booking</a></li>
+                            <li><a href="booking.php">booking</a></li>
                             <li><a href="about.html">payment</a></li>
                             <li><a href="about.html">reviews</a></li>
 
@@ -195,13 +195,15 @@
                                     </div> -->
                                     
                                     <div class="single-content2 py-4">
-                                        <h2><?php echo $business['name']; ?></h2>       
+                                        <h2 style="margin-bottom: 10px;"><?php echo $business['name']; ?><a href="booking.php" class="template-btn" style="margin-left: 79px;;">book now</a></h2>       
                                         <p><?php echo $business['description']; ?></p>
                                     </div>
                                     <div class="single-content3 py-4">
                                         <h4>Contact Information</h4>
-                                        <span><?php echo $business['email']; ?></span>
-                                        <span><?php echo $business['phone']; ?></span>                      
+                                        <ul class="mt-3">
+                                            <li class="mb-2"><?php echo $business['email']; ?></li>
+                                            <li class="mb-2"><?php echo $business['phone']; ?></li>
+                                        </ul>
                                         <!-- <span class="ml-4">03</span> -->
                                     </div>
                                     <!-- <div class="single-content4 py-4">
@@ -232,11 +234,13 @@
                                         <h4>Pricing</h4>
                                         <span><?php echo $business['pricing']; ?></span>
                                     </div>
-                                    <div class="single-content7 py-4">
+                                    <div class="single-content3 py-4">
                                         <h4>Portfolio</h4>
                                         <p>To view our work, you can check us out on our socials/website:</p>  
-                                        <i class="fa fa-instagram"></i>  <a href="<?php echo $business['ig_handle']; ?>"><?php echo $business['name']; ?></a> 
-
+                                        <ul class="mt-3">
+                                            <li class="mb-2"><i class="fa fa-instagram"></i>  <a href="<?php echo $business['ig_handle']; ?>"><?php echo $business['name']; ?></a></li>
+                                            <li class="mb-2"><i class="fa fa-dribbble"></i>  <a href="<?php echo $business['website']; ?>"><?php echo $business['website']; ?></a></li>
+                                        </ul>
                                         <!-- <div class="social-icons">
                                             <ul>
                                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>

@@ -237,9 +237,9 @@
                       <thead>
                         <tr>
                           <th>ID</th>
-                          <th>Student ID</th>
+                          <th>Client ID</th>
                           <th>Rating</th>
-                          <th>Wait Time</th>
+                          <!-- <th>Wait Time</th> -->
                           <th>Review Description</th>
                         </tr>
                       </thead>

@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="logo-area">
-                        <a href="index.html">                        
+                        <a href="homepage.php">                        
                                 <img src="assets/images/photopedia5.png" alt="" /><span>
                                   
                                 </span>                
@@ -59,7 +59,7 @@
                         <ul>
                             <li class="active"><a href="homepage.php">home</a></li>
                             <li><a href="about.html">services</a></li>
-                            <li><a href="about.html">booking</a></li>
+                            <li><a href="booking.php">booking</a></li>
                             <li><a href="about.html">payment</a></li>
                             <li><a href="about.html">reviews</a></li>
 
@@ -100,7 +100,7 @@
                                 // Rest of the code that uses $fetch array
                                 } else {
                                     // Handle the case when client_id is not set in the session
-                                    // echo "Client ID not found in the session.";
+                                    echo "Client ID not found in the session.";
                                 }
 
                                 // if (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['client_id'])) {
