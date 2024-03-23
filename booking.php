@@ -64,6 +64,7 @@
                 //     else{                    
                 $sql =  "INSERT INTO session (client_id,name,email,business,type,desired_date,time,location) VALUES(NULL,'$name','$email','$business','$type','$desired_date','$time','$location')";
                 mysqli_query($conn, $sql);
+                
                     //     echo "<div class='login-box'>
                     //     <div class='login-header'>
                     //     <header>Registration Successful!</header>
@@ -239,7 +240,10 @@
                         <input type="date" placeholder="Desired date" class="input-field" name="desired_date" id="desired_date" autocomplete="off" required>
                         <input type="time" placeholder="Time" class="input-field" name="time" id="time" autocomplete="off" required>
                         <input type="text" placeholder="Location" class="input-field" name="location" id="location" pattern="[A-Za-z]+" title="Location should only contain letters" autocomplete="off" required>             
-                        <input type="submit" name="submit" class="template-btn" value="Proceed to Payment" required>
+                        <a href="payment.php">
+                            <button type="submit" name="submit" class="template-btn" value="Proceed to Payment" required>Proceed to Payment</button>
+                        </a>
+
                         </div>
                         <!-- <div class="right">
                             <textarea name="message" cols="20" rows="7"  placeholder="Enter Message" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" required></textarea> 
