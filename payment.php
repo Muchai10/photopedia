@@ -8,58 +8,58 @@
 </head>
 <body>
     <?php 
-            ini_set("display_errors", "1");
-            ini_set("display_startup_errors","1");
-            error_reporting(E_ALL);
+            // ini_set("display_errors", "1");
+            // ini_set("display_startup_errors","1");
+            // error_reporting(E_ALL);
 
-            include("PHP/config.php");
-            if($_SERVER['REQUEST_METHOD'] == "POST"){
-                $fname = mysqli_real_escape_string($conn,$_POST['fname']); 
-                $lname = mysqli_real_escape_string($conn,$_POST['lname']);
-                $email = mysqli_real_escape_string($conn,$_POST['email']);
-                $phone = mysqli_real_escape_string($conn,$_POST['phone']);
-                $password = mysqli_real_escape_string($conn,$_POST['password']);
-                $cpassword = mysqli_real_escape_string($conn,$_POST['cpassword']);          
-                $verify_query = mysqli_query($conn,"SELECT * FROM client WHERE email ='$email'");
+            // include("PHP/config.php");
+            // if($_SERVER['REQUEST_METHOD'] == "POST"){
+            //     $fname = mysqli_real_escape_string($conn,$_POST['fname']); 
+            //     $lname = mysqli_real_escape_string($conn,$_POST['lname']);
+            //     $email = mysqli_real_escape_string($conn,$_POST['email']);
+            //     $phone = mysqli_real_escape_string($conn,$_POST['phone']);
+            //     $password = mysqli_real_escape_string($conn,$_POST['password']);
+            //     $cpassword = mysqli_real_escape_string($conn,$_POST['cpassword']);          
+            //     $verify_query = mysqli_query($conn,"SELECT * FROM client WHERE email ='$email'");
 
-                $passwordmd5 = md5($password);
-                $cpasswordmd5 = md5($cpassword);
+            //     $passwordmd5 = md5($password);
+            //     $cpasswordmd5 = md5($cpassword);
 
-                if(mysqli_num_rows($verify_query) !=0){
-                echo "<div class='login-box'>
-                <div class='login-header'>
-                        <header>Email has already been taken, Try another One Please</header>
-                    </div> <br>";
-                echo "<a href='javascript:self.history.back()'><div class='input-box'>
-                <input type='submit' class='input-submit' value='Go Back'>
-                </div></div>";
-                }  
+            //     if(mysqli_num_rows($verify_query) !=0){
+            //     echo "<div class='login-box'>
+            //     <div class='login-header'>
+            //             <header>Email has already been taken, Try another One Please</header>
+            //         </div> <br>";
+            //     echo "<a href='javascript:self.history.back()'><div class='input-box'>
+            //     <input type='submit' class='input-submit' value='Go Back'>
+            //     </div></div>";
+            //     }  
                      
-                else{
-                    if($passwordmd5 != $cpasswordmd5){
-                        echo "<div class='login-box'>
-                        <div class='login-header'>
-                                <header>Password Does Not Match</header>
-                            </div>";
-                        echo "<a href='javascript:self.history.back()'><div class='input-box'>
-                        <input type='submit' class='input-submit' value='Go Back'>
-                    </div></div>";
-                    }
-                    else{                    
-                    $sql =  "INSERT INTO client (fname,lname,email,phone,password,cpassword) VALUES('$fname','$lname','$email','$phone','$passwordmd5','$cpasswordmd5')";
-                        mysqli_query($conn, $sql);
-                        echo "<div class='login-box'>
-                        <div class='login-header'>
-                        <header>Registration Successful!</header>
-                        </div>";
-                        echo "<a href='signin.php'><div class='input-box'>
-                        <input type='submit' class='input-submit' value='Sign In'>
-                    </div></div>";
-                    }      
-                }
+            //     else{
+            //         if($passwordmd5 != $cpasswordmd5){
+            //             echo "<div class='login-box'>
+            //             <div class='login-header'>
+            //                     <header>Password Does Not Match</header>
+            //                 </div>";
+            //             echo "<a href='javascript:self.history.back()'><div class='input-box'>
+            //             <input type='submit' class='input-submit' value='Go Back'>
+            //         </div></div>";
+            //         }
+            //         else{                    
+            //         $sql =  "INSERT INTO client (fname,lname,email,phone,password,cpassword) VALUES('$fname','$lname','$email','$phone','$passwordmd5','$cpasswordmd5')";
+            //             mysqli_query($conn, $sql);
+            //             echo "<div class='login-box'>
+            //             <div class='login-header'>
+            //             <header>Registration Successful!</header>
+            //             </div>";
+            //             echo "<a href='signin.php'><div class='input-box'>
+            //             <input type='submit' class='input-submit' value='Sign In'>
+            //         </div></div>";
+            //         }      
+            //     }
     
-            }
-            else { 
+            // }
+            //else { 
         ?>
     <div class="login-box">
         <div class="logo">
@@ -91,6 +91,6 @@
         </div> -->
         </form>
     </div>
-    <?php } ?> 
+    <?php //} ?> 
 </body>
 </html>

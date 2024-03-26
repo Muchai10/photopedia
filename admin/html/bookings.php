@@ -60,7 +60,7 @@
           <div class="app-brand demo">
             <a href="index.php" class="app-brand-link">
               <!-- <img src="../assets/img/favicon/logo1.png" alt=""> -->
-              <span class="app-brand-text demo menu-text">PhotoPedia</span>
+              <span class="app-brand-text demo menu-text" style="color: purple;">PhotoPedia</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -236,7 +236,7 @@
                       <thead>
                         <tr>
                           <th>S.No</th>
-                          <th>Client ID</th>
+                          <!-- <th>Client ID</th> -->
                           <th>Name</th>
                           <th>Email</th>
                           <th>Business</th>
@@ -259,7 +259,7 @@
                         ?>
                         <tr>
                           <td><?=$row["session_id"]?></td>
-                          <td><?=$row["client_id"]?></td>
+                          <!-- <td><?//=$row["client_id"]?></td> -->
                           <td><?=$row["name"]?></td>
                           <td><?=$row["email"]?></td>
                           <td><?=$row["business"]?></td>

@@ -26,6 +26,7 @@
             ini_set("display_startup_errors","1");
             error_reporting(E_ALL);
 
+
             include("PHP/config.php");
             include("PHP/session.php");
 
@@ -64,6 +65,8 @@
                 //     else{                    
                 $sql =  "INSERT INTO session (client_id,name,email,business,type,desired_date,time,location) VALUES(NULL,'$name','$email','$business','$type','$desired_date','$time','$location')";
                 mysqli_query($conn, $sql);
+                header("Location: payment.php");
+                exit; 
                 
                     //     echo "<div class='login-box'>
                     //     <div class='login-header'>
@@ -229,7 +232,7 @@
         <br>
             <div class="row">
                 <div class="col-lg-12">
-                    <form method="POST">
+                    <form method="POST"> 
                         <div class="left">
                         <input type="hidden" class="input-field" name="client_id" id="client_id" required>   
                         <input type="text" placeholder="Name" class="input-field" name="name" id="name" pattern="[A-Za-z]+" title="Name should only contain letters" autocomplete="off" required>
@@ -240,9 +243,8 @@
                         <input type="date" placeholder="Desired date" class="input-field" name="desired_date" id="desired_date" autocomplete="off" required>
                         <input type="time" placeholder="Time" class="input-field" name="time" id="time" autocomplete="off" required>
                         <input type="text" placeholder="Location" class="input-field" name="location" id="location" pattern="[A-Za-z]+" title="Location should only contain letters" autocomplete="off" required>             
-                        <a href="payment.php">
-                            <button type="submit" name="submit" class="template-btn" value="Proceed to Payment" required>Proceed to Payment</button>
-                        </a>
+                        <input type="submit" name="submit" class="template-btn" value="Proceed to Payment" required>
+
 
                         </div>
                         <!-- <div class="right">

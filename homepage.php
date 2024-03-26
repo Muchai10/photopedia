@@ -298,45 +298,28 @@
                         {
                             ?>
                             <div class="single-job mb-4 d-lg-flex justify-content-between">
-                            <div class="job-text">
-                                <h4><?php echo $items['name']; ?></h4>
-                                <ul class="mt-4">
-                                    <li class="mb-3"><h5><i class="fa fa-map-marker"></i> <?php echo $items['building_name'].' '.$items['city']; ?></h5></li>
-                                    <li class="mb-3"><h5><i class="fa fa-pie-chart"></i> <?php echo $items['email'].' '.$items['phone']; ?></h5></li>
-                                    <li><h5><i class="fa fa-clock-o"></i> <?php echo $items['category']; ?></h5></li>
-                                </ul>
+                                <div class="job-text">
+                                    <h4><?php echo $items['name']; ?></h4>
+                                    <ul class="mt-4">
+                                        <li class="mb-3"><h5><i class="fa fa-map-marker"></i> <?php echo $items['building_name'].' '.$items['city']; ?></h5></li>
+                                        <li class="mb-3"><h5><i class="fa fa-pie-chart"></i> <?php echo $items['email'].' '.$items['phone']; ?></h5></li>
+                                        <li><h5><i class="fa fa-clock-o"></i> <?php echo $items['category']; ?></h5></li>
+                                    </ul>
+                                </div>
+                                <div class="job-img align-self-center">
+                                    <img src="assets/images/job1.png" alt="job">
+                                    <!-- <img src="<?php //echo $items['image']; ?>" alt="job"> -->
+                                </div>
+                                <div class="job-btn align-self-center">
+                                    <a href="business.php?id=<?php echo $items['p_id']; ?>" class="third-btn">More Details</a>
+                                </div>
                             </div>
-                            <div class="job-img align-self-center">
-                                <img src="assets/images/job1.png" alt="job">
-                                <!-- <img src="<?php //echo $items['image']; ?>" alt="job"> -->
-                            </div>
-                            <div class="job-btn align-self-center">
-                                <!-- <a href="#" class="third-btn job-btn1">full time</a> -->
-                                <a href="business.php?id=<?php echo $items['p_id']; ?>" class="third-btn">More Details</a>
 
-                            </div>
-            </div>
-
-                            <!-- <tr>
-                                <td><?php //echo $items['p_id']; ?></td>
-                                <td><?php //echo $items['image']; ?></td>
-                                <td><?php //echo $items['name']; ?></td>
-                                <td><?php //echo $items['description']; ?></td>
-                                <td><?php //echo $items['email']; ?></td>
-                                <td><?php //echo $items['phone']; ?></td>
-                                <td><?php //$items['city']; ?></td>
-                                <td><?php //$items['building_name']; ?></td>
-                                <td><?php //$items['category']; ?></td>
-                                <td><?php //$items['pricing']; ?></td> 
-                            </tr> -->
                             <?php
                         }
                     }
                     else{
                         ?>
-                            <!-- <tr>
-                                <td>No Record Found</td>
-                            </tr> -->
 
                             <div class="single-job mb-4 d-lg-flex justify-content-between">
                                 <div class="job-text">
