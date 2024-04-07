@@ -7,12 +7,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/registration.css">
+    <link rel="stylesheet" href="style.css">
     <title>Signin</title>
 </head>
 <body>
-    <div class="container">
-        <div class="box formbox">
 
             <?php
                 include("PHP/config.php");
@@ -28,7 +26,7 @@
                         $row = mysqli_fetch_assoc($result);
                         if($passwordmd5 == $row['Password']){
                             $_SESSION['Admin_ID'] = $row['Admin_ID'];
-                            header("Location: index.php");
+                            header("Location: ../index.php");
                         }
 
                         else{
@@ -51,33 +49,37 @@
                 } else{
 
             ?>
-            <div class="nav">
+            <div class="login-box">
                 <div class="logo">
-                    <img src="../assets/img/avatars/logo.png" alt="">
+                    <img src="Logo.png" alt="">
                 </div>
-            </div>
-            <!-- <header>Sign In</header> -->
-            <header>AFRICA NAZARENE UNIVERSITY: <br> CAFETERIA SYSTEM</header>
-            <form action="" method="post">
-                <div class="field input">
-                    <label for="Admin_ID">Username</label>
-                    <input type="text" name="Admin_ID" id="Admin_ID" autocomplete="off" required>
+                <div class="login-header">
+                    <header>Welcome</header>
+                    <p>We are happy to have you back</p>            
                 </div>
-
-                <div class="field input">
-                    <label for="Password">Password</label>
-                    <input type="password" name="Password" id="Password"  autocomplete="off"  required>
+                <form method="POST">
+                <div class="input-box">
+                    <input type="email" class="input-field" name="email" id="email" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" title="Must be a valid email" autocomplete="off" required>
+                    <label for="email">Email</label>
                 </div>
-
-                <div class="field">
-                    <input type="submit" class="btn" name="submit" value="Sign In" required>
-                    
+                <div class="input-box">
+                    <input type="password" class="input-field" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must be 8 or more characters" autocomplete="off" required>
+                    <label for="password">Password</label>
+                </div>
+                <div class="forgot">
+                    <section>
+                        <a href="#" class="forgot-link">Forgot password?</a>
+                    </section>
+                </div>
+                <div class="input-box">
+                    <input type="submit" name="submit" class="input-submit" value="Sign In" required>
                 </div>
                 <br>
-                
-            </form>
-        </div>
-    </div>   
-    <?php } ?>
+                <!-- <div class="sign-up">
+                    <p>Don't have an account? <a href="register.php">Sign up</a></p>
+                </div> -->
+                </form>
+            </div>
+            <?php } ?> 
 </body>
 </html>

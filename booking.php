@@ -40,43 +40,23 @@
                 $desired_date = mysqli_real_escape_string($conn,$_POST['desired_date']);
                 $time = mysqli_real_escape_string($conn,$_POST['time']);
                 $location = mysqli_real_escape_string($conn,$_POST['location']);
-                // $verify_query = mysqli_query($conn,"SELECT * FROM client WHERE email ='$email'");
 
-                // if(mysqli_num_rows($verify_query) !=0){
-                // echo "<div class='login-box'>
-                // <div class='login-header'>
-                //         <header>Email has already been taken, Try another One Please</header>
-                //     </div> <br>";
-                // echo "<a href='javascript:self.history.back()'><div class='input-box'>
-                // <input type='submit' class='input-submit' value='Go Back'>
-                // </div></div>";
-                // }  
-                     
-                // else{
-                //     if($passwordmd5 != $cpasswordmd5){
-                //         echo "<div class='login-box'>
-                //         <div class='login-header'>
-                //                 <header>Password Does Not Match</header>
-                //             </div>";
-                //         echo "<a href='javascript:self.history.back()'><div class='input-box'>
-                //         <input type='submit' class='input-submit' value='Go Back'>
-                //     </div></div>";
-                //     }
-                //     else{                    
+                $to = "20s01abt007@anu.ac.ke";
+                $header = "Booking a Photo Session $email";
+                $subject = "Confirming Photo Shoot Appointment: $name";
+                $message = "Hi, I would like to book a session at $location on $desired_date at $time ";
+                if(mail($to, $subject, $message, $header)){
+                    echo "Email Sent Successfully.";
+                }
+                else {
+                    echo "Failed to send email.";
+                }
+                      
                 $sql =  "INSERT INTO session (client_id,name,email,business,type,desired_date,time,location) VALUES(NULL,'$name','$email','$business','$type','$desired_date','$time','$location')";
                 mysqli_query($conn, $sql);
-                header("Location: payment.php");
-                exit; 
+                // header("Location: payment.php");
+                // exit; 
                 
-                    //     echo "<div class='login-box'>
-                    //     <div class='login-header'>
-                    //     <header>Registration Successful!</header>
-                    //     </div>";
-                    //     echo "<a href='signin.php'><div class='input-box'>
-                    //     <input type='submit' class='input-submit' value='Sign In'>
-                    // </div></div>";
-                    //}      
-                //}
     
             }
             else { 
