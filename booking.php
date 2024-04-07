@@ -26,6 +26,12 @@
             ini_set("display_startup_errors","1");
             error_reporting(E_ALL);
 
+            use PHPMailer\PHPMailer\PHPMailer;
+            use PHPMailer\PHPMailer\Exception;
+
+            require 'phpmailer/src/Exception.php';
+            require 'phpmailer/src/PHPMailer.php';
+            require 'phpmailer/src/SMTP.php';
 
             include("PHP/config.php");
             include("PHP/session.php");
@@ -41,16 +47,50 @@
                 $time = mysqli_real_escape_string($conn,$_POST['time']);
                 $location = mysqli_real_escape_string($conn,$_POST['location']);
 
-                $to = "20s01abt007@anu.ac.ke";
-                $header = "Booking a Photo Session $email";
                 $subject = "Confirming Photo Shoot Appointment: $name";
                 $message = "Hi, I would like to book a session at $location on $desired_date at $time ";
-                if(mail($to, $subject, $message, $header)){
-                    echo "Email Sent Successfully.";
-                }
-                else {
-                    echo "Failed to send email.";
-                }
+
+
+                $mail = new PHPMailer(true);
+
+                //Server settings
+                $mail->isSMTP();                              //Send using SMTP
+                $mail->Host       = 'smtp.gmail.com';       //Set the SMTP server to send through
+                $mail->SMTPAuth   = true;             //Enable SMTP authentication
+                $mail->Username   = '20s01abt007@anu.ac.ke';   //SMTP write your email
+                $mail->Password   = 'pweyssbebvfskndi';      //SMTP password
+                $mail->SMTPSecure = 'ssl';            //Enable implicit SSL encryption
+                $mail->Port       = 465;                                    
+
+                //Recipients
+                $mail->setFrom($email,$name); // Sender Email and name
+                $mail->addAddress('20s01abt007@anu.ac.ke');     //Add a recipient email  
+                $mail->addReplyTo($email, $name); // reply to sender email
+
+                //Content
+                $mail->isHTML(true);               //Set email format to HTML
+                $mail->Subject = $subject;   // email subject headings
+                $mail->Body    = $message; //email message
+
+                // Success sent message alert
+                $mail->send();
+                echo
+                " 
+                <script> 
+                alert('Message was sent successfully!');
+                </script>
+                ";
+
+                // $to = "20s01abt007@anu.ac.ke";
+                // $header = "Booking a Photo Session $email";
+                // $subject = "Confirming Photo Shoot Appointment: $name";
+                // $message = "Hi, I would like to book a session at $location on $desired_date at $time ";
+                // if(mail($to, $subject, $message, $header)){
+                //     echo "Email Sent Successfully.";
+                // }
+                // else {
+                //     echo "Failed to send email.";
+                // }
                       
                 $sql =  "INSERT INTO session (client_id,name,email,business,type,desired_date,time,location) VALUES(NULL,'$name','$email','$business','$type','$desired_date','$time','$location')";
                 mysqli_query($conn, $sql);
