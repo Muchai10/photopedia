@@ -78,6 +78,7 @@
                 " 
                 <script> 
                 alert('Message was sent successfully!');
+                document.location.href = 'payment.php';
                 </script>
                 ";
 
@@ -132,7 +133,7 @@
                             <li class="active"><a href="homepage.php">home</a></li>
                             <li><a href="about.html">services</a></li>
                             <li><a href="booking.php">booking</a></li>
-                            <li><a href="about.html">payment</a></li>
+                            <li><a href="payment.php">payment</a></li>
                             <li><a href="about.html">reviews</a></li>
 
                             <!-- <li><a href="about.html">about us</a></li>

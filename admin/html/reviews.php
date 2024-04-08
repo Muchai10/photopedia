@@ -114,6 +114,13 @@
                 <div data-i18n="User interface">Bookings</div>
               </a>
             </li>
+            
+            <li class="menu-item">
+              <a href="transaction.php" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-copy"></i>
+                <div data-i18n="User interface">Transactions</div>
+              </a>
+            </li>
 
             <li class="menu-item">
               <a href="reviews.php" class="menu-link">
@@ -237,16 +244,17 @@
                       <thead>
                         <tr>
                           <th>ID</th>
-                          <th>Client ID</th>
+                          <th>Name</th>
+                          <th>Email</th>
                           <th>Rating</th>
-                          <!-- <th>Wait Time</th> -->
                           <th>Review Description</th>
+                          <th>Date</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php          
                             include_once "PHP/config.php";
-                            $sql="SELECT * from reviews";
+                            $sql="SELECT * from review";
                             $result=$conn-> query($sql);
                             $count=1;
                             if ($result-> num_rows > 0){
@@ -254,11 +262,12 @@
            
                         ?>
                         <tr>
-                          <td><?=$row["Review_ID"]?></td>
-                          <td><?=$row["Student_ID"]?></td>
-                          <td><?=$row["Rating"]?></td>
-                          <td><?=$row["Wait_Time"]?></td>
-                          <td><?=$row["Review_description"]?></td>
+                          <td><?=$row["review_id"]?></td>
+                          <td><?=$row["name"]?></td>
+                          <td><?=$row["email"]?></td>
+                          <td><?=$row["rating"]?></td>
+                          <td><?=$row["description"]?></td>
+                          <td><?=$row["date"]?></td>
     
                         <?php
                               $count=$count+1;

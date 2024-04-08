@@ -138,6 +138,13 @@
             </li>
 
             <li class="menu-item">
+              <a href="transaction.php" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-copy"></i>
+                <div data-i18n="User interface">Transactions</div>
+              </a>
+            </li>
+
+            <li class="menu-item">
               <a href="reviews.php" class="menu-link">
               <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="User interface">Reviews</div>
@@ -315,7 +322,28 @@
                       </h5> 
                     </div>
                   </div>
-                </div>
+                </div> 
+                <!-- <div class="col-md-6 col-lg-4">
+                  <div class="card mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title">Total No. Of Booked Sessions</h5>
+                      <h5> 
+                        <?php
+                            // $sql="SELECT * from session";
+                            // $result=$conn-> query($sql);
+                            // $count=0;
+                            // if ($result-> num_rows !=0 ){
+                            //     while ($row=$result-> fetch_assoc()) {
+                        
+                            //         $count=$count+1;
+                            //     }
+                            // }
+                            // echo $count;
+                        ?>
+                      </h5> 
+                    </div>
+                  </div>
+                </div> -->
               </div>
 
                <!-- <button type="button" class="btn btn-primary" style="height:40px" onclick="window.print()">

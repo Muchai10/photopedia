@@ -116,6 +116,13 @@
             </li>
 
             <li class="menu-item">
+              <a href="transaction.php" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-copy"></i>
+                <div data-i18n="User interface">Transactions</div>
+              </a>
+            </li>
+
+            <li class="menu-item">
               <a href="reviews.php" class="menu-link">
               <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="User interface">Reviews</div>
