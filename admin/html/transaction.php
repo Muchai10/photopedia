@@ -244,7 +244,6 @@
                       <thead>
                         <tr>
                           <th>ID</th>
-                          <th>Name</th>
                           <th>Email</th>
                           <th>Amount</th>
                           <th>Mpesa Receipt Number</th>
@@ -263,11 +262,11 @@
            
                         ?>
                         <tr>
-                          <td><?=$row["review_id"]?></td>
-                          <td><?=$row["name"]?></td>
+                          <td><?=$row["id"]?></td>
                           <td><?=$row["email"]?></td>
-                          <td><?=$row["rating"]?></td>
-                          <td><?=$row["description"]?></td>
+                          <td><?=$row["amount"]?></td>
+                          <td><?=$row["mpesareceiptnumber"]?></td>
+                          <td><?=$row["phone"]?></td>
                           <td><?=$row["date"]?></td>
     
                         <?php

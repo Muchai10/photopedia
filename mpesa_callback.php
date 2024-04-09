@@ -18,19 +18,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $combined_data = (object) array_merge((array) $data, (array) $formData);
     file_put_contents($fileName, json_encode($combined_data, JSON_PRETTY_PRINT));
     echo "Data saved to " . $fileName;
-} elseif ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (file_exists($fileName)) {
-        $existingData = file_get_contents($fileName);
-        $data = json_decode($existingData, true);
+    } elseif ($_SERVER['REQUEST_METHOD'] == 'GET') {
+        if (file_exists($fileName)) {
+            $existingData = file_get_contents($fileName);
+            $data = json_decode($existingData, true);
 
-        // Display the data
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
+            // Display the data
+            echo "<pre>";
+            print_r($data);
+            echo "</pre>";
+        } else {
+            echo "No data available.";
+        }
     } else {
-        echo "No data available.";
+        echo "Invalid request method.";
     }
-} else {
-    echo "Invalid request method.";
-}
 ?>

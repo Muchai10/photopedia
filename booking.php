@@ -45,10 +45,11 @@
                 $type = mysqli_real_escape_string($conn,$_POST['type']);
                 $desired_date = mysqli_real_escape_string($conn,$_POST['desired_date']);
                 $time = mysqli_real_escape_string($conn,$_POST['time']);
+                $endtime = mysqli_real_escape_string($conn,$_POST['end_time']);
                 $location = mysqli_real_escape_string($conn,$_POST['location']);
 
                 $subject = "Confirming Photo Shoot Appointment: $name";
-                $message = "Hi, I would like to book a session at $location on $desired_date at $time ";
+                $message = "Hi, I would like to book a session at $location on $desired_date at $time to $endtime";
 
 
                 $mail = new PHPMailer(true);
@@ -93,7 +94,7 @@
                 //     echo "Failed to send email.";
                 // }
                       
-                $sql =  "INSERT INTO session (client_id,name,email,business,type,desired_date,time,location) VALUES(NULL,'$name','$email','$business','$type','$desired_date','$time','$location')";
+                $sql =  "INSERT INTO session (client_id,name,email,business,type,desired_date,time,end_time,location) VALUES(NULL,'$name','$email','$business','$type','$desired_date','$time','$endtime','$location')";
                 mysqli_query($conn, $sql);
                 // header("Location: payment.php");
                 // exit; 
@@ -262,7 +263,8 @@
                         <input type="text" placeholder="Photography business" class="input-field" name="business" id="business" pattern="[A-Za-z]+" title="Name should only contain letters" autocomplete="off" required>
                         <input type="text" placeholder="Type of photography session being booked" class="input-field" name="type" id="type" pattern="[A-Za-z]+" title="Name should only contain letters" autocomplete="off" required>
                         <input type="date" placeholder="Desired date" class="input-field" name="desired_date" id="desired_date" autocomplete="off" required>
-                        <input type="time" placeholder="Time" class="input-field" name="time" id="time" autocomplete="off" required>
+                        <input type="time" placeholder="Start Time" class="input-field" name="time" id="time" autocomplete="off" required>
+                        <input type="time" placeholder="End Time" class="input-field" name="end_time" id="end_time" autocomplete="off" required>
                         <input type="text" placeholder="Location" class="input-field" name="location" id="location" pattern="[A-Za-z]+" title="Location should only contain letters" autocomplete="off" required>             
                         <input type="submit" name="submit" class="template-btn" value="Proceed to Payment" required>
 
