@@ -128,7 +128,12 @@
                 <div data-i18n="User interface">Reviews</div>
               </a>
             </li>
-
+            <li class="menu-item">
+              <a href="report.php" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-crown"></i>
+                <div data-i18n="User interface">General</div>
+              </a>
+            </li>
           </ul>
         </aside>
         <!-- / Menu -->

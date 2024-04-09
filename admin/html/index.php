@@ -151,6 +151,13 @@
               </a>
             </li>
 
+            <li class="menu-item">
+              <a href="report.php" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-crown"></i>
+                <div data-i18n="User interface">General</div>
+              </a>
+            </li>
+
           </ul>
         </aside>
         <!-- / Menu -->
@@ -309,6 +316,48 @@
                       <h5> 
                         <?php
                             $sql="SELECT * from session";
+                            $result=$conn-> query($sql);
+                            $count=0;
+                            if ($result-> num_rows !=0 ){
+                                while ($row=$result-> fetch_assoc()) {
+                        
+                                    $count=$count+1;
+                                }
+                            }
+                            echo $count;
+                        ?>
+                      </h5> 
+                    </div>
+                  </div>
+                </div> 
+                <div class="col-md-6 col-lg-4">
+                  <div class="card mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title">Total No. Of Transactions</h5>
+                      <h5> 
+                        <?php
+                            $sql="SELECT * from transaction";
+                            $result=$conn-> query($sql);
+                            $count=0;
+                            if ($result-> num_rows !=0 ){
+                                while ($row=$result-> fetch_assoc()) {
+                        
+                                    $count=$count+1;
+                                }
+                            }
+                            echo $count;
+                        ?>
+                      </h5> 
+                    </div>
+                  </div>
+                </div> 
+                <div class="col-md-6 col-lg-4">
+                  <div class="card mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title">Total No. Of Reviews</h5>
+                      <h5> 
+                        <?php
+                            $sql="SELECT * from review";
                             $result=$conn-> query($sql);
                             $count=0;
                             if ($result-> num_rows !=0 ){
