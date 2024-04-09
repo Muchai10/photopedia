@@ -246,15 +246,16 @@
                           <th>ID</th>
                           <th>Name</th>
                           <th>Email</th>
-                          <th>Rating</th>
-                          <th>Review Description</th>
+                          <th>Amount</th>
+                          <th>Mpesa Receipt Number</th>
+                          <th>Phone</th>
                           <th>Date</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php          
                             include_once "PHP/config.php";
-                            $sql="SELECT * from review";
+                            $sql="SELECT * from transaction";
                             $result=$conn-> query($sql);
                             $count=1;
                             if ($result-> num_rows > 0){

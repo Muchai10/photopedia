@@ -45,7 +45,7 @@
         $initiate_url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
 
         # callback url
-        $CallBackURL = 'https://a38a-41-89-20-2.ngrok-free.app/mpesa_callback.php';
+        $CallBackURL = 'https://7fdf-196-96-199-77.ngrok-free.app/mpesa_callback.php';
 
         $curl = curl_init($access_token_url);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
@@ -86,8 +86,7 @@
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
         $curl_response = curl_exec($curl);
-        print_r($curl_response);
-
-        echo $curl_response;
+        header("Location:/review.php");
+        
     };
 ?>
